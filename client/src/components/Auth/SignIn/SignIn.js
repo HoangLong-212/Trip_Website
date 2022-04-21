@@ -15,12 +15,12 @@ export default function SignIn() {
       <form className="form-main">
         <div className="form-item">
           <label className="form-label">Email address</label>
-          <input type="text" className="form-input" />
+          <input type="text" className="form-input" required />
         </div>
         <div className="form-item">
           <label className="form-label">Password</label>
           <div className="form-password">
-            <input className="form-input" type={state ? "text" : "password"} />
+            <input className="form-input" type={state ? "text" : "password"} required/>
             <button onClick={show_hide_btn}>
               {state ? <FaRegEyeSlash /> : <FaRegEye />}
             </button>
