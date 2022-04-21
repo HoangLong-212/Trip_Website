@@ -1,0 +1,7 @@
+#auth-page{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    
+    background: url("../../assets/img/SignIn-Background.png") top left / contain no-repeat;
+}
