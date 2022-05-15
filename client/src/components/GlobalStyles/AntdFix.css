@@ -1,0 +1,46 @@
+/* Global */
+p {
+  margin: 0;
+}
+/* Global */
+
+/* Banner Css */
+.ant-carousel .slick-prev,
+.ant-carousel .slick-next,
+.ant-carousel .slick-prev:hover,
+.ant-carousel .slick-next:hover {
+  font-size: inherit !important;
+  color: currentColor !important;
+}
+
+.ant-carousel .slick-prev {
+  /* left: 10px !important; */
+  z-index: 2 !important;
+  color: #000 !important;
+}
+
+.ant-carousel .slick-next {
+  /* right: 10px !important;  */
+  z-index: 2 !important;
+  color: #000 !important;
+}
+
+body .slick-prev::before,
+body .slick-next::before {
+  display: none;
+}
+/* Banner Css */
+
+/* Start Rate CSS */
+.ant-rate-star-second {
+  color: #b9bfcd;
+}
+
+.ant-rate {
+  color: var(--green-light);
+}
+
+.ant-rate-star:not(:last-child) {
+  margin-right: 2px;
+}
+/* Start Rate CSS */

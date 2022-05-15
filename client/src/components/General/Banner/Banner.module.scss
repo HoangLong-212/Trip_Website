@@ -1,0 +1,36 @@
+.wrapper {
+  margin-top: 48px;
+  h2 {
+    margin-bottom: 18px;
+  }
+}
+
+.slider {
+  margin-top: 18px;
+  h2 {
+    margin-bottom: 12px;
+    color: #fff;
+  }
+}
+
+.btn1,
+.btn2 {
+  position: absolute;
+}
+
+.btn1 {
+  top: 30%;
+  left: 20%;
+  transform: translateY(-50%);
+}
+
+.btn2 {
+  top: 30%;
+  right: 20%;
+  transform: translateY(-50%);
+}
+
+.banner {
+  display: flex !important;
+  justify-content: space-between !important;
+}
