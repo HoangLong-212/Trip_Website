@@ -1,0 +1,23 @@
+.wrapper {
+  padding: 6px;
+
+  &:hover{
+    background-color: #fff;
+    cursor: pointer;
+  }
+}
+
+.inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.location {
+  position: absolute;
+  background-color: #fff;
+  padding: 10px 16px;
+  bottom: 10%;
+  opacity: 0.9;
+  font-weight: 600;
+}
