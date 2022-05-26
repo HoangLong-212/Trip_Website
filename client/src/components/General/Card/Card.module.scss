@@ -3,8 +3,6 @@
   margin: 10px;
   background-color: var(--card-background);
   border-radius: 20px;
-
-  
 }
 
 .inner,
@@ -13,8 +11,7 @@
   flex-direction: column;
 
   &:hover {
-    p{
-
+    p {
       text-decoration: underline;
     }
   }
@@ -29,9 +26,8 @@
 }
 
 .card-title {
-  
+  height: calc(10vh + 10vw);
   img {
-    width: 100%;
     border-radius: 20px;
   }
 }
@@ -52,14 +48,12 @@
   font-weight: 600;
 }
 
-.start-rate {
-  margin-bottom: 8px;
-}
+
 
 .location {
   display: flex;
   align-items: center;
-
+  margin-top: 8px;
   span {
     margin-left: 2px;
     font-size: 1.4rem;

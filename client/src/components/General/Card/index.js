@@ -2,36 +2,52 @@ import { Rate } from "antd";
 import classNames from "classnames/bind";
 import React from "react";
 import { MdPlace } from "react-icons/md";
-import IconButton from "../IconButton";
+import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
+import IconButton from "../IconButton";
 import styles from "./Card.module.scss";
 
 const cx = classNames.bind(styles);
 
-function Card({ classNames }) {
+function Card({ classNames, value, path }) {
+  const navigate = useNavigate();
+
   const classes = cx("wrapper", {
     [classNames]: classNames,
   });
 
+  const handleClick = () => {
+   
+    // localStorage.setItem("_id", JSON.stringify(value));
+    // navigate('/'+ path + "-" + value.name);
+  }
+
   return (
-    <div className={classes}>
-      <div className={cx("inner")}>
+    <div className={classes} >
+      <Link to={'/'+ path + "-" + value.name}> 
+      <div className={cx("inner")} onClick={handleClick}>
         <div className={cx("card-title")}>
-          <img src={require("@/assets/img/Test.png")} alt="" />
-          {/* <IconButton className={cx("card-icon")}/> */}
+          <img src={value.image[0]} alt="" />
         </div>
         <div className={cx("card-content")}>
-          <p>Ho Chi Minh City</p>
-          <div className={cx("start-rate")}>
-            <Rate disabled allowHalf defaultValue={2.5} />
-            <span className="ant-rate-text">( 2.5 )</span>
-          </div>
+          <p>{value.name}</p>
+          {value.evaluatePoint && (
+            <>
+              <div className={cx("start-rate")}>
+                <Rate disabled allowHalf defaultValue={value.evaluatePoint} />
+                <span className="ant-rate-text">( {value.evaluatePoint} )</span>
+              </div>
+            </>
+          )}
+
           <div className={cx("location")}>
             <MdPlace />
-            <span>Viet Nam</span>
+            <span>{value.provinceID ? value.provinceID.name : value.location}</span>
           </div>
         </div>
       </div>
+      </Link>
       <div>
         <IconButton className={cx("card-icon")} />
       </div>
