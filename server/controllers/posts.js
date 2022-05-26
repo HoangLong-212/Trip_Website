@@ -4,7 +4,7 @@ export const getPosts = async (req, res) => {
   try {
     // const post = new PostModel({
     //     title: 'test',
-    //     content: 'test',
+    //     content: 'abc',
     // });
     // post.save();
     const posts = await PostModel.find();

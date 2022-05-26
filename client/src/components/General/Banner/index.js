@@ -1,6 +1,9 @@
+import React, { useState, useEffect } from "react";
 import { Carousel } from "antd";
 import classNames from "classnames/bind";
-import React from "react";
+import { useSelector } from "react-redux";
+import { provincesState$ } from "@/redux/selectors";
+
 import Card from "../Card";
 import CardImage from "../Card/CardImage";
 import IconButton from "../IconButton";
@@ -8,6 +11,9 @@ import styles from "./Banner.module.scss";
 const cx = classNames.bind(styles);
 
 function Banner({ listBanner, type, title, slider }) {
+  let listBannerNew = listBanner;
+  listBannerNew.list = listBannerNew.list.sort(() => Math.random() - 0.5).slice(0, 6);
+
   const SlickButtonFix = ({
     currentSlide,
     slideCount,
@@ -15,10 +21,22 @@ function Banner({ listBanner, type, title, slider }) {
     ...passProps
   }) => <span {...passProps}>{children}</span>;
 
-  const bannerItems = {
-    cardWithBackground: <Card />,
-    card: <CardImage />,
-  };
+  const bannerItems = (value) => ({
+    cardWithBackground: (
+      <Card
+        key={value._id}
+        value={value}
+        path = {listBanner.path}
+      />
+    ),
+    card: (
+      <CardImage
+        key={value._id}
+        value={value}
+        path = {listBanner.path}
+      />
+    ),
+  });
 
   const settings = {
     dots: false,
@@ -39,16 +57,22 @@ function Banner({ listBanner, type, title, slider }) {
     ),
   };
 
-  const classes = cx("wrapper",{ 
+  const classes = cx("wrapper", {
     slider,
-  })
+  });
+
+  const CarouselCompo = () => {
+    return (
+      <Carousel {...settings} className={cx("banner")}>
+        {listBannerNew.list.map((value, index) => bannerItems(value)[type])}
+      </Carousel>
+    );
+  };
 
   return (
     <div className={classes}>
       <h2>{title}</h2>
-      <Carousel {...settings} className={cx("banner")}>
-        {listBanner.map((value, index) => bannerItems[type])}
-      </Carousel>
+      <CarouselCompo />
     </div>
   );
 }

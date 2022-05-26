@@ -1,14 +1,21 @@
+import React from "react";
+import classNames from "classnames/bind";
+import * as actions from "@/redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { attractionsState$, foodAndDrinksState$, hotelsState$, provincesState$ } from "@/redux/selectors";
+
 import Banner from "@/components/General/Banner";
 import ListOfBtnImg from "@/components/General/List/ListOfBtnImg";
 import Search from "@/components/General/Search";
-import classNames from "classnames/bind";
-import React from "react";
 import styles from "./Home.module.scss";
 
 const cx = classNames.bind(styles);
 
 function Home() {
-  const arr =[1, 2, 3, 4, 5, 6, 7, 8];
+  const province = useSelector(provincesState$);
+  const attraction = useSelector(attractionsState$);
+  const foodAndDrink = useSelector(foodAndDrinksState$);
+  const hotel = useSelector(hotelsState$);
 
   return (
     <div className={cx("wrapper")}>
@@ -17,17 +24,31 @@ function Home() {
         <Search large className={cx("search")} />
       </div>
       <ListOfBtnImg />
+
       <Banner
-        title="Top destinations for your next vacation"
-        listBanner={arr}
+        title="5-Star Favorites"
         type="cardWithBackground"
+        listBanner={{
+          path: "FoodAndDrink",
+          list: foodAndDrink,
+        }}
       />
-       <Banner
+      <Banner
+        title="The Best Hotels and Resorts"
+        type="cardWithBackground"
+        listBanner={{
+          path: "Hotel",
+          list: hotel,
+        }}
+      />
+      <Banner
         title="Your might like these"
-        listBanner={arr}
         type="cardWithBackground"
+        listBanner={{
+          path: "Attraction",
+          list: attraction,
+        }}
       />
-      
     </div>
   );
 }

@@ -1,8 +1,17 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import posts from './routers/posts.js'
 import mongoose from "mongoose";
+import posts from './routers/posts.js'
+import Province from './routers/Province.js'
+import Place from './routers/Place.js';
+import Hotel from './routers/Hotel.js';
+import FoodAndDrink from './routers/FoodAndDrink.js';
+import Attraction from './routers/Attraction.js';
+
+
+
+
 
 const app = express();
 const PORT = process.env.port || 5000;
@@ -15,6 +24,13 @@ app.use(bodyParser.urlencoded({ extended: true, limit: '30mb'}));
 app.use(cors());
 
 app.use('/posts', posts);
+app.use('/province', Province);
+app.use('/place', Place);
+app.use('/hotel', Hotel);
+app.use('/foodAndDrink', FoodAndDrink);
+app.use('/attraction', Attraction);
+
+
 
 mongoose
   .connect(URI, { useNewUrlParser: true, useUnifiedTopology: true })

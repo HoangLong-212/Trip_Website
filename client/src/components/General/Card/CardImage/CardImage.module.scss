@@ -13,6 +13,10 @@
   flex-direction: column;
 }
 
+.image{
+  height: calc(25vh + 10vw);
+}
+
 .location {
   position: absolute;
   background-color: #fff;

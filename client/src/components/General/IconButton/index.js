@@ -16,7 +16,7 @@ function IconButton({ icon, className }) {
 
   };
   const classes = cx("wrapper", {
-    [className]: className,
+    // [className]: className,
   });
 
   const classBtn = cx("btn", {
@@ -25,12 +25,6 @@ function IconButton({ icon, className }) {
   });
 
   const handleIcon = () => {
-    // if (state) {
-    //   setState(false);
-    // } else {
-    //   setState(true);
-    // }
-
     setState(!state);
   };
 
