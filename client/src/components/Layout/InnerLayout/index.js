@@ -9,16 +9,22 @@ import {
   attractionsState$,
   foodAndDrinksState$,
   hotelsState$,
+  provincesState$,
 } from "@/redux/selectors";
-import {  useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 
 function InnerLayout({ children }) {
+
+  let { name } = useParams();
+
+
   const attractions = useSelector(attractionsState$);
   const foodAndDrinks = useSelector(foodAndDrinksState$);
   const hotels = useSelector(hotelsState$);
-
+  const provinces = useSelector(provincesState$);
 
   const url = window.location.pathname;
   const path = url
@@ -26,9 +32,11 @@ function InnerLayout({ children }) {
     .split("/")
     .filter((x) => x);
 
-  const headerURL = path[0].split("-");
+  const headerURL = path[0].split("_");
 
-  let dataSet;
+
+
+  let dataSet;  
 
   if (headerURL[0] === "Attraction") {
     dataSet = attractions.find(function (dataSet) {
@@ -42,6 +50,10 @@ function InnerLayout({ children }) {
     dataSet = hotels.find(function (dataSet) {
       return dataSet.name === headerURL[1];
     });
+  } else if (headerURL[0] === "Province") {
+    dataSet = provinces.find(function (dataSet) {
+      return dataSet.name === headerURL[1];
+    });
   }
 
   const [data, setData] = useState({
@@ -53,12 +65,24 @@ function InnerLayout({ children }) {
     evaluatePoint: -1,
   });
 
-  if (dataSet !== undefined && data.name === "") {
-    setData(dataSet);
+  if (dataSet !== undefined) {
+    if (data.name === "") {
+      setData(dataSet);
+    } else if (data.name !== dataSet.name) {
+      setData(dataSet);
+    }
   }
 
   return (
-    <DefaultLayout backgroundColor childrenOutSide={<TopContent data={data} />}>
+    <DefaultLayout
+      backgroundColor={headerURL[0] === "Province" ? false : true}
+      childrenOutSide={
+        <TopContent
+          data={data}
+          display={headerURL[0] === "Province" ? false : true}
+        />
+      }
+    >
       <div className={cx("wrapper")}>
         <div className={cx("container")}>
           <ImgContent data={data.image} name={data.name} />

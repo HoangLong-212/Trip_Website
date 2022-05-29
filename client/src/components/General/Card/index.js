@@ -25,7 +25,7 @@ function Card({ classNames, value, path }) {
 
   return (
     <div className={classes} >
-      <Link to={'/'+ path + "-" + value.name}> 
+      <Link to={'/'+ path + "_" + value.name}> 
       <div className={cx("inner")} onClick={handleClick}>
         <div className={cx("card-title")}>
           <img src={value.image[0]} alt="" />

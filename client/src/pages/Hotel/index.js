@@ -1,20 +1,26 @@
-import React from "react";
+import React, {useState} from "react";
 import classNames from "classnames/bind";
 import styles from "./Hotel.module.scss";
-import { useDispatch, useSelector } from "react-redux";
-import { attractionsState$, hotelsState$, provincesState$ } from "@/redux/selectors";
+import { useSelector } from "react-redux";
+import { hotelsState$ } from "@/redux/selectors";
+import { Rate, Tooltip } from "antd";
+import { AiOutlineInfoCircle } from "react-icons/ai";
+import HotelItemGird from "@/components/Features/Hotel/HotelItemGird";
+import HotelModal from "@/components/General/Modal/HotelModal";
 
 const cx = classNames.bind(styles);
 
 function Hotel() {
   // let localS = localStorage.getItem("_id");
   // console.log(JSON.parse(localS)._id);
-  let n = 0;
+
+  const [key, setKey] = useState("1");
+
   const hotels = useSelector(hotelsState$);
   const url = window.location.pathname;
   const path = url
     .replaceAll("%20", " ")
-    .split("/Hotel-")
+    .split("/Hotel_")
     .filter((x) => x);
 
   const hotel = hotels.find(function (hotel) {
@@ -23,13 +29,28 @@ function Hotel() {
 
   let data = {
     description: "",
-    openTime: "",
-    closeTime: "",
-    duration: 0,
-    type: {
-      landmark: false,
-      museum: false,
-      amusementPark: false,
+    roomType: {
+      oceanView: true,
+      NonSmokingRoom: true,
+      landmarkView: true,
+      suite: true,
+      poolView: true,
+    },
+    roomFeatures: {
+      airConditioning: true,
+      privateBalcony: true,
+      bar: true,
+      safe: true,
+      refrigerator: true,
+      flatScreen: true,
+    },
+    property: {
+      freeParking: true,
+      wifi: true,
+      pool: true,
+      fitnessCenterWithGym: true,
+      freeBreakfast: true,
+      beach: true,
     },
   };
 
@@ -39,49 +60,46 @@ function Hotel() {
     };
   }
 
+  const RateStart = () => {
+    return <Rate disabled allowHalf defaultValue={data.star} />;
+  };
+
   return (
     <div className={cx("wrapper")}>
+      <HotelModal data={data} defaultActiveKey = {key} />
       <h1>About</h1>
       <div className={cx("inner")}>
         <div className={cx("description")}>
           <p>{data.description}</p>
         </div>
         <div className={cx("information")}>
-          <div className={cx("information-columns")}>
-            <div className={cx("information-item")}>
-              <h4>Time open</h4>
-
-              <p>
-                {/* {data.openTime} - {data.closeTime} */}
-              </p>
+          <HotelItemGird
+            data={data.property}
+            name="property"
+            title="Property amenities"
+            onClick={()=>{setKey("1")}}
+          />
+          <HotelItemGird
+            data={data.roomFeatures}
+            name="roomFeatures"
+            title="Room features"
+            onClick={()=>{setKey("2")}}
+          />
+          <HotelItemGird
+            data={data.roomType}
+            name="roomType"
+            title="Room types"
+            onClick={()=>{setKey("3")}}
+          />
+          <div className={cx("good-to-know")}>
+            <h4>Good to know</h4>
+            <div className={cx("good-to-know-item")}>
+              <p>HOTEL CLASS</p>
+              <Tooltip title="Star ratings are intended to indicate the general level of features, amenities, and services to expect. This property is classified according to Giata.">
+                <AiOutlineInfoCircle />
+              </Tooltip>
             </div>
-            <div className={cx("information-item")}>
-              <h4>Duration</h4>
-              {/* <p>More than {data.duration} hours</p> */}
-            </div>
-          </div>
-          <div className={cx("information-columns")}>
-            <div className={cx("information-item")}>
-              <h4>Price</h4>
-              {/* <p>{data.price} $</p> */}
-            </div>
-            {/* <div className={cx("information-item")}>
-              <h4>Cultural tourism</h4>
-
-              {Object.entries(data.type).map((value, index) => {
-                if (value[1] === true) {
-                  n += 1;
-                  let str;
-                  if (n === 1) {
-                    str = value[0];
-                  } else {
-                    str = ", " + value[0];
-                  }
-                  return <span key={index}>{str}</span>;
-                }
-              })}
-              <span>.</span>
-            </div> */}
+            <RateStart />
           </div>
         </div>
       </div>

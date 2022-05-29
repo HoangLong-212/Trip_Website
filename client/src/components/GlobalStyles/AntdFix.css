@@ -49,6 +49,13 @@ body .slick-next::before {
 /* Modal CSS */
 .ant-modal-body{
   height: 500px;
+  border-top: 1px solid #f0f0f0; ;
   /* overflow: hidden;
   overflow-y: auto; */
 }
+
+.ant-modal-header {
+  border-bottom: none ;
+}
+
+/* Modal CSS */
