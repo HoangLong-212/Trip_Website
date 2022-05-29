@@ -1,30 +1,16 @@
-.wrapper{
+.wrapper {
+  display: flex;
+  width: 90%;
+  align-items: center;
+}
+
+.icon {
+  font-size: 2.4rem;
 
 }
 
-.btn{
-  min-width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: #fff;
-  padding: 5px;
-  border: 1px solid transparent;
-  cursor: pointer;
-}
-
-.btn-icon,
-.btn-icon-fill{
- font-size: 2.8rem;
-}
-
-.btn-icon-fill{
-  color: #ff5d5d
-}
-
-.icon{
-  border: 1px solid #000;
-  &:hover{
-    background-color: #000;
-    color: #fff;
-  }
+.text{
+  flex: 1;
+  font-size: 1.6rem;
+  padding-left: 12px;
 }

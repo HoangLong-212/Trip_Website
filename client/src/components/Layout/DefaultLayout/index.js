@@ -16,15 +16,16 @@ function DefaultLayout({ children, backgroundColor = false, childrenOutSide }) {
 
   React.useEffect(() => {
     dispatch(actions.getProvinces.getProvincesRequest());
+    dispatch(actions.getPlaces.getPlacesRequest());
     dispatch(actions.getAttractions.getAttractionsRequest());
     dispatch(actions.getFoodAndDrinks.getFoodAndDrinksRequest());
     dispatch(actions.getHotels.getHotelsRequest());
-
   }, [dispatch]);
   
   const classes = cx("wrapper", {
     backgroundColor,
   });
+
 
   return (
     <div className={classes}>

@@ -1,6 +1,4 @@
 .wrapper {
-  // display: flex;
-  // flex-direction: column;
   padding-top: 80px;
   background-color: #fff;
   width: 100%;
@@ -22,7 +20,7 @@
 .top-content {
   justify-content: space-between;
 
-  p {
+  span {
     font-size: 4.2rem;
     font-weight: bold;
   }

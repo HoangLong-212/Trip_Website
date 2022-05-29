@@ -14,7 +14,7 @@ function Attraction() {
   const url = window.location.pathname;
   const path = url
     .replaceAll("%20", " ")
-    .split("/Attraction-")
+    .split("/Attraction_")
     .filter((x) => x);
 
   const attraction = attractions.find(function (attraction) {

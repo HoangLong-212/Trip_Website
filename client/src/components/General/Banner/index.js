@@ -10,9 +10,11 @@ import IconButton from "../IconButton";
 import styles from "./Banner.module.scss";
 const cx = classNames.bind(styles);
 
-function Banner({ listBanner, type, title, slider }) {
+function Banner({ listBanner, type, title, slider, number = 4, className }) {
   let listBannerNew = listBanner;
-  listBannerNew.list = listBannerNew.list.sort(() => Math.random() - 0.5).slice(0, 6);
+  listBannerNew.list = listBannerNew.list
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 6);
 
   const SlickButtonFix = ({
     currentSlide,
@@ -23,55 +25,56 @@ function Banner({ listBanner, type, title, slider }) {
 
   const bannerItems = (value) => ({
     cardWithBackground: (
-      <Card
-        key={value._id}
-        value={value}
-        path = {listBanner.path}
-      />
+      <Card key={value._id} value={value} path={listBanner.path} />
     ),
-    card: (
-      <CardImage
-        key={value._id}
-        value={value}
-        path = {listBanner.path}
-      />
-    ),
+    card: <CardImage key={value._id} value={value} path={listBanner.path} />,
   });
 
   const settings = {
     dots: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 4,
+    slidesToShow: number,
+    slidesToScroll: number,
     arrows: true,
     prevArrow: (
       <SlickButtonFix>
-        <IconButton icon="left" className={cx("btn1")} />
+        <IconButton icon="left" className={cx("prevArrow-btn")} />
       </SlickButtonFix>
     ),
     nextArrow: (
       <SlickButtonFix>
-        <IconButton icon="right" className={cx("btn2")} />
+        <IconButton icon="right" className={cx("nextArrow-btn")} />
       </SlickButtonFix>
     ),
   };
 
   const classes = cx("wrapper", {
+    [className]: className,
     slider,
   });
 
   const CarouselCompo = () => {
     return (
-      <Carousel {...settings} className={cx("banner")}>
-        {listBannerNew.list.map((value, index) => bannerItems(value)[type])}
+      <Carousel {...settings}>
+        {listBannerNew.list.map((value) => bannerItems(value)[type])}
       </Carousel>
     );
   };
 
   return (
     <div className={classes}>
-      <h2>{title}</h2>
+      <h2
+        style={
+          title === undefined
+            ? {
+                display: "none",
+              }
+            : null
+        }
+      >
+        {title}
+      </h2>
       <CarouselCompo />
     </div>
   );

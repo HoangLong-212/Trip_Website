@@ -1,35 +1,32 @@
 import classNames from "classnames/bind";
 import React, { useState } from "react";
-import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
-import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
-
+import { property, roomFeatures, roomType } from "./Data";
 import styles from "./IconText.module.scss";
 
 const cx = classNames.bind(styles);
 
-function IconText({ icon, className }) {
-  const [state, setState] = useState(true);
+function IconText({ name, data, className }) {
+  let Icons;
+  let title;
+  if (name === "property") {
+    Icons = property[data].icon;
+    title = property[data].title;
+  } else if (name === "roomFeatures") {
+    Icons = roomFeatures[data].icon;
+    title = roomFeatures[data].title;
+  } else if (name === "roomType") {
+    Icons = roomType[data].icon;
+    title = roomType[data].title;
+  }
 
-  const listIcons = {
-    left: <FiArrowLeft className={cx("btn-icon")} />,
-    right: <FiArrowRight className={cx("btn-icon")} />,
-
-  };
   const classes = cx("wrapper", {
     [className]: className,
   });
 
   return (
     <div className={classes}>
-      {/* <button className={classBtn} onClick={handleIcon}>
-        {icon ? (
-          listIcons[icon]
-        ) : state ? (
-          <AiOutlineHeart className={cx("btn-icon")} />
-        ) : (
-          <AiFillHeart className={cx("btn-icon-fill")} />
-        )}
-      </button> */}
+      <Icons className={cx("icon")} />
+      <span className={cx("text")}>{title}</span>
     </div>
   );
 }

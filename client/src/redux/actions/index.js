@@ -7,6 +7,8 @@ export const getType = (reduxAction) => {
 export const showModal = createAction('SHOW_MODAL')
 export const hideModal = createAction('HIDE_MODAL')
 
+export const showHotelModal = createAction('SHOW_HOTEL_MODAL')
+export const hideHotelModal = createAction('HIDE_HOTEL_MODAL')
 
 export const getPosts = createActions({
   getPostsRequest: undefined,

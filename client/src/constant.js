@@ -9,6 +9,9 @@ export const INIT_STATE = {
   Modal: {
     isShow: false,
   },
+  HotelModal: {
+    isShow: false,
+  },
   Province: {
     isLoading: false,
     data: [],

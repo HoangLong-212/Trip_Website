@@ -20,7 +20,7 @@ function FoodAndDrink() {
   const url = window.location.pathname;
   const path = url
     .replaceAll("%20", " ")
-    .split("/FoodAndDrink-")
+    .split("/FoodAndDrink_")
     .filter((x) => x);
 
 
@@ -29,8 +29,7 @@ function FoodAndDrink() {
     return foodAndDrink.name === path[0];
   });
 
-
-
+  
   let data = {
     price: "",
     openTime: "",
@@ -68,11 +67,11 @@ function FoodAndDrink() {
           <div className={cx("detail")}>
             <div className={cx("detail-columns")}>
               <div className={cx("detail-item")}>
-                <h5>PRICE</h5>
+                <h4>PRICE</h4>
                 <p>{data.price} $</p>
               </div>
               <div className={cx("detail-item")}>
-                <h5>CUISINES</h5>
+                <h4>CUISINES</h4>
                 {Object.entries(data.type).map((value, index) => {
                   if (value[1] === true) {
                     typeIndex += 1;
@@ -89,13 +88,13 @@ function FoodAndDrink() {
             </div>
             <div className={cx("detail-columns")}>
               <div className={cx("detail-item")}>
-                <h5>TIME OPEN</h5>
+                <h4>TIME OPEN</h4>
                 <p>
                   {data.openTime} - {data.closeTime}
                 </p>
               </div>
               <div className={cx("detail-item")}>
-                <h5>MEALS</h5>
+                <h4>MEALS</h4>
                 {Object.entries(data.meal).map((value, index) => {
                   if (value[1] === true) {
                     mealIndex += 1;
@@ -112,7 +111,7 @@ function FoodAndDrink() {
             </div>
           </div>
           <div className={cx("detail-item")}>
-            <h5>SPECIAL DIETS</h5>
+            <h4>SPECIAL DIETS</h4>
             {Object.entries(data.specialDiet).map((value, index) => {
               if (value[1] === true) {
                 specialDietIndex += 1;
