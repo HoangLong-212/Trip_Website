@@ -2,6 +2,28 @@ import { HotelModel } from "../models/HotelModel.js";
 
 export const getHotels = async (req, res) => {
   try {
+    // const post = new HotelModel({
+    //   name: "Motel Quoc Viet",
+    //   location:
+    //     "Hùng Vương, Phước Hưng, Bà Rịa, Ba Ria - Vung Tau, Vietnam, Ba Ria, Vietnam",
+    //   description: "",
+    //   phone: "0118 425 437",
+    //   price: 12,
+    //   start: 0,
+    //   image: [
+    //     "https://cf.bstatic.com/xdata/images/hotel/max1024x768/282737717.jpg?k=915b93d36185eecf3eb910559b967a71366ff02da0fa0a97ad42923e7c3094a3&o=&hp=1",
+    //     "https://q-xx.bstatic.com/xdata/images/hotel/840x460/282680006.jpg?k=0401d80a02b556c9c4e033d023a4fd3577b6af36976421d7253aae1f67aa56ac&o=",
+    //     "https://cf.bstatic.com/xdata/images/hotel/max1024x768/282676223.jpg?k=f176f5b36933658f28403754cbc7937b18dd7257f328994e96d0601635c7d2e0&o=&hp=1",
+    //   ],
+    //   website:
+    //     "https://www.ihg.com/holidayinnresorts/hotels/us/en/vung-tau/vtght/hoteldetail",
+    //   placeID: "62835f98dc4dd1b7495ea898",
+    //   provinceID: "62834d22d587a5f7b2b82bac",
+    //   evaluatePoint: 3.5,
+    // });
+
+    // post.save();
+
     await HotelModel.find()
       .populate({
         path: "placeID",
@@ -92,8 +114,7 @@ export const getHotels = async (req, res) => {
 //     "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/08/23/52/6b/vanda-hotel.jpg?w=1200&h=-1&s=1",
 //   ],
 //   website: "https://www.vandahotel.vn/",
-//   placeID: "62835e50bbcfaf241dc01a16",
-//   provinceID: "62834d22d587a5f7b2b82bac",
+//    provinceID: "628350433f67b71a8812d62b",
 //   evaluatePoint: 5,
 // }
 //   // {
