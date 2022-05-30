@@ -9,6 +9,7 @@ import {
   attractionsState$,
   foodAndDrinksState$,
   hotelsState$,
+  placesState$,
   provincesState$,
 } from "@/redux/selectors";
 import { useSelector } from "react-redux";
@@ -25,6 +26,8 @@ function InnerLayout({ children }) {
   const foodAndDrinks = useSelector(foodAndDrinksState$);
   const hotels = useSelector(hotelsState$);
   const provinces = useSelector(provincesState$);
+  const places = useSelector(placesState$);
+
 
   const url = window.location.pathname;
   const path = url
@@ -33,8 +36,6 @@ function InnerLayout({ children }) {
     .filter((x) => x);
 
   const headerURL = path[0].split("_");
-
-
 
   let dataSet;  
 
@@ -52,6 +53,10 @@ function InnerLayout({ children }) {
     });
   } else if (headerURL[0] === "Province") {
     dataSet = provinces.find(function (dataSet) {
+      return dataSet.name === headerURL[1];
+    });
+  } else if (headerURL[0] === "Place") {
+    dataSet = places.find(function (dataSet) {
       return dataSet.name === headerURL[1];
     });
   }
@@ -75,11 +80,11 @@ function InnerLayout({ children }) {
 
   return (
     <DefaultLayout
-      backgroundColor={headerURL[0] === "Province" ? false : true}
+      backgroundColor={headerURL[0] === "Province" || headerURL[0] === "Place"  ? false : true}
       childrenOutSide={
         <TopContent
           data={data}
-          display={headerURL[0] === "Province" ? false : true}
+          display={headerURL[0] === "Province" || headerURL[0] === "Place" ? false : true}
         />
       }
     >

@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import classNames from "classnames/bind";
-import styles from "./Province.module.scss";
+import styles from "./ProvinceAndPlace.module.scss";
 import { useSelector } from "react-redux";
-import { attractionsState$, foodAndDrinksState$, hotelsState$, placesState$, provincesState$ } from "@/redux/selectors";
-import { Rate, Tooltip } from "antd";
-import { AiOutlineInfoCircle } from "react-icons/ai";
-import HotelItemGird from "@/components/Features/Hotel/HotelItemGird";
-import HotelModal from "@/components/General/Modal/HotelModal";
+import {
+  attractionsState$,
+  foodAndDrinksState$,
+  hotelsState$,
+  placesState$,
+  provincesState$,
+} from "@/redux/selectors";
 import BannerTitle from "@/components/General/Banner/BannerTitle";
-
 
 const cx = classNames.bind(styles);
 
-function Province() {
+function ProvinceAndPlace() {
   let { name } = useParams();
   // let localS = localStorage.getItem("_id");
   // console.log(JSON.parse(localS)._id);
@@ -27,28 +28,32 @@ function Province() {
   const url = window.location.pathname;
   const path = url
     .replaceAll("%20", " ")
-    .split("/Province_")
+    .split("/")
     .filter((x) => x);
 
-  const province = provinces.find(function (province) {
-    return province.name === path[0];
+  const headerURL = path[0].split("_");
+
+  let sources = provinces;
+
+  if (headerURL[0] === "Place") {
+    sources = places;
+  }
+
+  const source = sources.find(function (source) {
+    return source.name === headerURL[1];
   });
 
-  const place = places.filter(function (place) {
-    return place.provinceID.name === path[0];
-  });
-
-  const hotel = hotels.filter(function (hotel) {
-    return hotel.provinceID.name === path[0];
-  });
-  const foodAndDrink = foodAndDrinks.filter(function (foodAndDrink) {
-    return foodAndDrink.provinceID.name === path[0];
-  });
-  const attraction = attractions.filter(function (attraction) {
-    return attraction.provinceID.name === path[0];
-  });
-
-  // console.log("hotel",hotel)
+  const list = (lists) => {
+    let array;
+    array = lists.filter(function (array) {
+      if (headerURL[0] === "Place" && array.placeID !== undefined) {
+        return array.placeID.name === headerURL[1];
+      } else if (headerURL[0] === "Province") {
+        return array.provinceID.name === headerURL[1];
+      }
+    });
+    return array;
+  };
 
   let data = {
     name: "",
@@ -56,9 +61,9 @@ function Province() {
     description: "",
   };
 
-  if (province !== undefined) {
+  if (source !== undefined) {
     data = {
-      ...province,
+      ...source,
     };
   }
 
@@ -75,28 +80,28 @@ function Province() {
             type="cardWithBackground"
             listBanner={{
               path: "Place",
-              list: place,
-            }}
-          />
-          <BannerTitle
-            type="cardWithBackground"
-            listBanner={{
-              path: "Hotel",
-              list: hotel,
-            }}
-          />
-          <BannerTitle
-            type="cardWithBackground"
-            listBanner={{
-              path: "FoodAndDrink",
-              list: foodAndDrink,
+              list: list(places),
             }}
           />
           <BannerTitle
             type="cardWithBackground"
             listBanner={{
               path: "Attraction",
-              list: attraction,
+              list: list(attractions),
+            }}
+          />
+          <BannerTitle
+            type="cardWithBackground"
+            listBanner={{
+              path: "Hotel",
+              list: list(hotels),
+            }}
+          />
+          <BannerTitle
+            type="cardWithBackground"
+            listBanner={{
+              path: "FoodAndDrink",
+              list: list(foodAndDrinks),
             }}
           />
         </div>
@@ -105,4 +110,4 @@ function Province() {
   );
 }
 
-export default Province;
+export default ProvinceAndPlace;

@@ -2,6 +2,32 @@ import { AttractionModel } from "../models/AttractionModel.js";
 
 export const getAttractions = async (req, res) => {
   try {
+    // const post = new AttractionModel({
+    //   name: "Nui Dat hill",
+    //   location: "Ba Ria City, Ba Ria - Vung Tau",
+    //   description:
+    //     "Nui Dat (Núi Đất) is a former 1st Australian Task Force (1 ATF) base now part of Ba Ria city in Ba Ria–Vung Tau province, Vietnam. It is not the name of an official ward, it just means dirt hill.",
+    //   phone: "0254 354 076",
+    //   price: 0,
+    //   openTime: "7:30",
+    //   closeTime: "17:00",
+    //   duration: 2,
+    //   image: [
+    //     "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/11/95/58/f3/with-harry-smith-at-nui.jpg?w=1200&h=-1&s=1",
+    //     "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/11/4e/52/e7/piper-at-ltc.jpg?w=1200&h=-1&s=1",
+    //     "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/11/95/55/bd/dave-sabben-was-talking.jpg?w=1200&h=-1&s=1",
+    //   ],
+    //   website: "",
+    //   type: {
+    //     museum: true,
+    //   },
+    //   evaluatePoint: 5,
+    //   placeID: "62835f98dc4dd1b7495ea898",
+    //   provinceID: "62834d22d587a5f7b2b82bac",
+    // });
+
+    // post.save();
+
     await AttractionModel.find()
       .populate({
         path: "placeID",
