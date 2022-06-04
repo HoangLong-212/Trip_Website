@@ -32,24 +32,24 @@ function ProvinceAndPlace() {
     .filter((x) => x);
 
   const headerURL = path[0].split("_");
-
+  
   let sources = provinces;
 
-  if (headerURL[0] === "Place") {
+  if (headerURL[1] === "Place") {
     sources = places;
   }
 
   const source = sources.find(function (source) {
-    return source.name === headerURL[1];
+    return source.name === name;
   });
 
   const list = (lists) => {
     let array;
     array = lists.filter(function (array) {
-      if (headerURL[0] === "Place" && array.placeID !== undefined) {
-        return array.placeID.name === headerURL[1];
-      } else if (headerURL[0] === "Province") {
-        return array.provinceID.name === headerURL[1];
+      if (headerURL[1] === "Place" && array.placeID !== undefined) {
+        return array.placeID.name === name;
+      } else if (headerURL[1] === "Province") {
+        return array.provinceID.name === name;
       }
     });
     return array;

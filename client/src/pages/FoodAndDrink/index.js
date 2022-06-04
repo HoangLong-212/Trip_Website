@@ -6,6 +6,7 @@ import { foodAndDrinksState$ } from "@/redux/selectors";
 import { MdPlace } from "react-icons/md";
 import { FiPhone } from "react-icons/fi";
 import { AiOutlineGlobal } from "react-icons/ai";
+import { useParams } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 
@@ -15,21 +16,14 @@ function FoodAndDrink() {
   let typeIndex = 0;
   let mealIndex = 0;
   let specialDietIndex = 0;
+  let { name } = useParams();
 
   const foodAndDrinks = useSelector(foodAndDrinksState$);
-  const url = window.location.pathname;
-  const path = url
-    .replaceAll("%20", " ")
-    .split("/FoodAndDrink_")
-    .filter((x) => x);
-
-
 
   const foodAndDrink = foodAndDrinks.find(function (foodAndDrink) {
-    return foodAndDrink.name === path[0];
+    return foodAndDrink.name === name;
   });
 
-  
   let data = {
     price: "",
     openTime: "",
@@ -126,11 +120,11 @@ function FoodAndDrink() {
             })}
           </div>
         </div>
-        
+
         <div className={cx("location")}>
           <h2>Location and contact</h2>
           <div className={cx("location-img")}>
-            <img src={require("@/assets/img/location.png")}/>
+            <img src={require("@/assets/img/location.png")} />
           </div>
           <div className={cx("location-item")}>
             <MdPlace className={cx("location-item-icon")} />

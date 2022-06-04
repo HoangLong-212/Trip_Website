@@ -59,3 +59,29 @@ body .slick-next::before {
 }
 
 /* Modal CSS */
+
+/* CheckBox CSS */
+.ant-checkbox-wrapper{
+  font-size: 1.6rem;
+}
+
+.ant-checkbox-group-item{
+  margin-right: 0;
+  margin-top: 4px;
+}
+
+.ant-checkbox-inner{
+  border: 1px solid #000;
+}
+/* CheckBox CSS */
+
+/* Slider CSS */
+.ant-slider-handle{
+  border: 2px solid #91d5ff !important;
+}
+
+.ant-slider-rail{
+  background-color: #ccc;
+}
+
+/* Slider CSS */

@@ -39,7 +39,7 @@ function IconButton({ icon, className }) {
           <AiFillHeart className={cx("btn-icon-fill")} />
         )}
       </button>
-    </div>
+     </div>
   );
 }
 

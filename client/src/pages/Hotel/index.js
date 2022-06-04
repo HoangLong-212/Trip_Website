@@ -7,6 +7,7 @@ import { Rate, Tooltip } from "antd";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import HotelItemGird from "@/components/Features/Hotel/HotelItemGird";
 import HotelModal from "@/components/General/Modal/HotelModal";
+import { useParams } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 
@@ -15,16 +16,13 @@ function Hotel() {
   // console.log(JSON.parse(localS)._id);
 
   const [key, setKey] = useState("1");
+  let { name } = useParams();
 
   const hotels = useSelector(hotelsState$);
-  const url = window.location.pathname;
-  const path = url
-    .replaceAll("%20", " ")
-    .split("/Hotel_")
-    .filter((x) => x);
+
 
   const hotel = hotels.find(function (hotel) {
-    return hotel.name === path[0];
+    return hotel.name === name;
   });
 
   let data = {

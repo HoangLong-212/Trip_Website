@@ -3,7 +3,7 @@ import { Carousel } from "antd";
 import classNames from "classnames/bind";
 import { useSelector } from "react-redux";
 import { provincesState$ } from "@/redux/selectors";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import Card from "../../Card";
 import CardImage from "../../Card/CardImage";
@@ -12,32 +12,39 @@ import styles from "./BannerTitle.module.scss";
 import Banner from "..";
 const cx = classNames.bind(styles);
 
-function BannerTitle({ listBanner, type, title, slider }) {
-
+function BannerTitle({ listBanner, type, slider }) {
   let { name } = useParams();
-  const [data, setData] = useState(()=>{
-    if(listBanner.path === "Place"){
+  const url = window.location.pathname;
+  const path = url
+    .replaceAll("%20", " ")
+    .split("/")
+    .filter((x) => x);
+
+  const headerURL = path[0].split("_");
+
+  const [data, setData] = useState(() => {
+    if (listBanner.path === "Place") {
       return {
         title: "Cities in " + name,
         description: "",
-      }
-    }
-    else  if(listBanner.path === "Hotel"){
+      };
+    } else if (listBanner.path === "Hotel") {
       return {
         title: "Stay",
         description: "A mix of the charming, iconic, and modern",
-      }
-    }else  if(listBanner.path === "FoodAndDrink"){
+      };
+    } else if (listBanner.path === "FoodAndDrink") {
       return {
         title: "Eat",
         description: "Quintessential " + name + " bistros, bars, and beyond.",
-      }
-    }
-    else  if(listBanner.path === "Attraction"){
+      };
+    } else if (listBanner.path === "Attraction") {
       return {
         title: "Visit",
-        description: "Places to see, ways to wander, and signature experiences that define " + name,
-      }
+        description:
+          "Places to see, ways to wander, and signature experiences that define " +
+          name,
+      };
     }
   });
 
@@ -51,10 +58,16 @@ function BannerTitle({ listBanner, type, title, slider }) {
         <div className={cx("inner")}>
           <div className={cx("title")}>
             <p>{data.title}</p>
-            <p>
-              {data.description}
-            </p>
-            <p>See all</p>
+            <p>{data.description}</p>
+            {listBanner.path !== "Place" ? (
+              <Link
+                to={
+                  "/Filter_" + headerURL[1] + "_" + listBanner.path + "_" + name
+                }
+              >
+                <p className={cx("see-all")}>See all</p>
+              </Link>
+            ) : null}
           </div>
           <div className={cx("banner")}>
             <Banner
