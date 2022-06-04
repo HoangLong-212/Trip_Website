@@ -9,33 +9,59 @@ import { useDispatch, useSelector } from "react-redux";
 
 import styles from "./TopContent.module.scss";
 import IconButton from "@/components/General/IconButton";
+import { useParams } from "react-router-dom";
 const cx = classNames.bind(styles);
 
-function TopContent({ data, display = false }) {
+function TopContent({ data, display }) {
+  let { name } = useParams();
+  let title;
+  // console.log("display",display[0]);
+
+  if (display[0] === "Filter") {
+    if (display[2] === "Attraction") {
+      title = <span>Things to Do in {name}</span>;
+    } else if (display[2] === "Hotel") {
+      title = <span>{name} Hotels and Places to Stay</span>;
+    } else if (display[2] === "FoodAndDrink") {
+      title = <span>Restaurants in {name}</span>;
+    }
+  } else if (display[0] === "Info") {
+    if (display[1] !== "Province" && display[1] !== "Place") {
+      title = <span>{data.name}</span>;
+    } else {
+      title = (
+        <span>
+          <span
+            style={{
+              color: "#FF5D5D",
+            }}
+          >
+            Explore{" "}
+          </span>
+          {data.name}
+        </span>
+      );
+    }
+  }
+
   const RateStart = () => {
     return <Rate disabled allowHalf defaultValue={data.evaluatePoint} />;
   };
 
+  const classes = cx("wrapper", {});
+
   return (
-    <div className={cx("wrapper")}>
+    <div className={classes}>
       <div className={cx("inner")}>
         <div className={cx("top-content")}>
-          <span>
-            {!display ? (
-              <span
-                style={{
-                  color: "#FF5D5D",
-                }}
-              >
-                Explore{" "}
-              </span>
-            ) : null}
-
-            {data.name}
-          </span>
-          <IconButton className={cx("icon-btn")} />
+          {title}
+          {display[0] !== "Filter" ? (
+            <IconButton className={cx("icon-btn")} />
+          ) : null}
         </div>
-        {display ? (
+        {display[0] !== "Filter" &&
+        display[1] !== "Province" &&
+        display[1] !== "Place" ? (
           <div>
             <div className={cx("start-rate")}>
               <RateStart />
@@ -58,7 +84,9 @@ function TopContent({ data, display = false }) {
               </div>
             </div>
           </div>
-        ) : null}
+        ) : (
+          <div style={{ marginBottom: 24 }} />
+        )}
       </div>
     </div>
   );

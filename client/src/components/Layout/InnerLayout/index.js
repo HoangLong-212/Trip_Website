@@ -39,25 +39,25 @@ function InnerLayout({ children }) {
 
   let dataSet;  
 
-  if (headerURL[0] === "Attraction") {
+  if (headerURL[1] === "Attraction") {
     dataSet = attractions.find(function (dataSet) {
-      return dataSet.name === headerURL[1];
+      return dataSet.name === name;
     });
-  } else if (headerURL[0] === "FoodAndDrink") {
+  } else if (headerURL[1] === "FoodAndDrink") {
     dataSet = foodAndDrinks.find(function (dataSet) {
-      return dataSet.name === headerURL[1];
+      return dataSet.name === name;
     });
-  } else if (headerURL[0] === "Hotel") {
+  } else if (headerURL[1] === "Hotel") {
     dataSet = hotels.find(function (dataSet) {
-      return dataSet.name === headerURL[1];
+      return dataSet.name === name;
     });
-  } else if (headerURL[0] === "Province") {
+  } else if (headerURL[1] === "Province") {
     dataSet = provinces.find(function (dataSet) {
-      return dataSet.name === headerURL[1];
+      return dataSet.name === name;
     });
-  } else if (headerURL[0] === "Place") {
+  } else if (headerURL[1] === "Place") {
     dataSet = places.find(function (dataSet) {
-      return dataSet.name === headerURL[1];
+      return dataSet.name === name;
     });
   }
 
@@ -73,18 +73,19 @@ function InnerLayout({ children }) {
   if (dataSet !== undefined) {
     if (data.name === "") {
       setData(dataSet);
-    } else if (data.name !== dataSet.name) {
+    } 
+    else if (data.name !== dataSet.name) {
       setData(dataSet);
     }
   }
 
   return (
     <DefaultLayout
-      backgroundColor={headerURL[0] === "Province" || headerURL[0] === "Place"  ? false : true}
+      backgroundColor={headerURL[1] === "Province" || headerURL[1] === "Place"  ? false : true}
       childrenOutSide={
         <TopContent
           data={data}
-          display={headerURL[0] === "Province" || headerURL[0] === "Place" ? false : true}
+          display={headerURL}
         />
       }
     >

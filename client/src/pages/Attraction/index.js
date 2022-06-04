@@ -3,6 +3,7 @@ import classNames from "classnames/bind";
 import styles from "./Attraction.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { attractionsState$, provincesState$ } from "@/redux/selectors";
+import { useParams } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 
@@ -10,15 +11,11 @@ function Attraction() {
   // let localS = localStorage.getItem("_id");
   // console.log(JSON.parse(localS)._id);
   let n = 0;
+  let { name } = useParams();
   const attractions = useSelector(attractionsState$);
-  const url = window.location.pathname;
-  const path = url
-    .replaceAll("%20", " ")
-    .split("/Attraction_")
-    .filter((x) => x);
 
   const attraction = attractions.find(function (attraction) {
-    return attraction.name === path[0];
+    return attraction.name === name;
   });
 
   let data = {

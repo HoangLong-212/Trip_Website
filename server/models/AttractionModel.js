@@ -59,7 +59,6 @@ const schema = new mongoose.Schema(
       ref: "Province",
     },
   },
-  { timestamps: true }
 );
 
 export const AttractionModel = mongoose.model("Attraction", schema);

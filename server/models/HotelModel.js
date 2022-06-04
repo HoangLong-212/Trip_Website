@@ -20,12 +20,30 @@ const schema = new mongoose.Schema(
     price: {
       type: Number,
     },
-    start: {
+    star: {
       type: Number,
     },
     image: [],
     website: {
       type: String,
+    },
+    type: {
+      hotel: {
+        type: Boolean,
+        default: false,
+      },
+      hostel: {
+        type: Boolean,
+        default: false,
+      },
+      resort: {
+        type: Boolean,
+        default: false,
+      },
+      motel: {
+        type: Boolean,
+        default: false,
+      },
     },
     roomType: {
       oceanView: {
@@ -113,7 +131,6 @@ const schema = new mongoose.Schema(
       ref: "Province",
     },
   },
-  { timestamps: true }
 );
 
 export const HotelModel = mongoose.model("Hotel", schema);

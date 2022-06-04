@@ -89,7 +89,6 @@ const schema = new mongoose.Schema(
       ref: "Province",
     },
   },
-  { timestamps: true }
 );
 
 export const FoodAndDrinkModel = mongoose.model("FoodAndDrink", schema);

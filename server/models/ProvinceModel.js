@@ -21,7 +21,6 @@ const schema = new mongoose.Schema(
     },
     image:[],
   },
-  { timestamps: true }
 );
 
 export const ProvinceModel = mongoose.model("Province", schema);

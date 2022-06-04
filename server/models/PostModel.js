@@ -17,7 +17,6 @@ const schema = new mongoose.Schema(
     },
     attachment: String,
   },
-  { timestamps: true }
 );
 
 export const PostModel = mongoose.model("Post", schema);

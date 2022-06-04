@@ -2,7 +2,8 @@ import { FoodAndDrinkModel } from "../models/FoodAndDrinkModel.js";
 
 export const getFoodAndDrinks = async (req, res) => {
   try {
-    // const post = new FoodAndDrinkModel({
+    // const post = new FoodAndDrinkModel(
+    // {
     //   name: "Muoi",
     //   location:
     //     "Coastal Road, Ho Tram Hamlet Meliá Ho Tram Beach Resort, Ba Ria 790000 Vietnam",
@@ -27,7 +28,8 @@ export const getFoodAndDrinks = async (req, res) => {
     //   evaluatePoint: 4,
     //   placeID: "62835f98dc4dd1b7495ea898",
     //   provinceID: "62834d22d587a5f7b2b82bac",
-    // });
+    // }
+    // );
 
     // post.save();
 
@@ -48,6 +50,32 @@ export const getFoodAndDrinks = async (req, res) => {
 };
 
 // const post = new FoodAndDrinkModel(
+// {
+//   name: "Muoi",
+//   location:
+//     "Coastal Road, Ho Tram Hamlet Meliá Ho Tram Beach Resort, Ba Ria 790000 Vietnam",
+//   phone: "0334 830 185",
+//   price: 40,
+//   openTime: "8:00",
+//   closeTime: "22:00",
+//   image: [
+//     "https://media-cdn.tripadvisor.com/media/photo-s/17/ed/ab/87/outdoor.jpg",
+//     "https://media-cdn.tripadvisor.com/media/photo-s/17/e4/b7/00/getlstd-property-photo.jpg",
+//     "https://media-cdn.tripadvisor.com/media/photo-w/19/78/6c/10/muoi.jpg",
+//   ],
+//   website: "",
+//   meal: {
+//     breakfast: true,
+//     lunch: true,
+//     dinner: true,
+//   },
+//   type: {
+//     restaurant: true,
+//   },
+//   evaluatePoint: 4,
+//   placeID: "62835f98dc4dd1b7495ea898",
+//   provinceID: "62834d22d587a5f7b2b82bac",
+// }
 //   //   {
 //   //   name: "Pizza Leo",
 //   //   location: "2a Phan Chu Trinh, Vung Tau 790000 Vietnam",
