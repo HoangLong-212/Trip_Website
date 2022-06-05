@@ -1,0 +1,102 @@
+.wrapper {
+  background-color: white;
+  display: flex;
+  width: 100%;
+
+  .background-Img {
+    width: 50%;
+    height: 100vh;
+  }
+  .signInField {
+    margin-top: 80px;
+    width: fit-content;
+    flex-direction: column;
+    align-items: center;
+    // justify-content: space-between;
+    display: flex;
+
+    .input {
+        // overflow: hidden;
+    }
+
+    .title {
+        margin-top: 8px;
+        margin-bottom: 4px;
+        padding-left: 16px;
+        color: #555555;
+        font-size: 16px;
+        font-weight: 400;
+      }
+    
+      .text-title {
+        // padding-left: 50%;
+        text-align: center;
+        font-size: 40px;
+        font-weight: 600;
+        color: #000;
+        margin-bottom: 16px;
+      }
+    
+      .name-input {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+      }
+    
+      .personal-info {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+      }
+    
+      .signUp-button {
+        margin-top: 20px;
+      }
+      .signIn-question {
+        margin-top: 12px;
+        margin-bottom: 28px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+      }
+      .question {
+      }
+      .navigation-button {
+        margin-left: 8px;
+        color: #1ea222;
+        font-weight: 500;
+        &:hover {
+          text-decoration: underline;
+          cursor: pointer;
+        }
+      }
+  }
+
+
+  .semi-wrapper{
+    width: 50%;
+    justify-content: center;
+    display: flex;
+  }
+
+ 
+  .devider-login {
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .divider {
+    height: 1px;
+    width: 150px;
+    background-color: #a5a5a5;
+  }
+
+  .ant-picker-input{
+    height: 38px;
+    width: 136px;
+  }
+}

@@ -8,6 +8,8 @@ import Place from './routers/Place.js';
 import Hotel from './routers/Hotel.js';
 import FoodAndDrink from './routers/FoodAndDrink.js';
 import Attraction from './routers/Attraction.js';
+import Accounts from './routers/Account.js';
+import Profiles from './routers/Profile.js'
 
 
 
@@ -23,12 +25,14 @@ app.use(bodyParser.json({limit: '30mb'}));
 app.use(bodyParser.urlencoded({ extended: true, limit: '30mb'}));
 app.use(cors());
 
+app.use("/accounts", Accounts);
 app.use('/posts', posts);
 app.use('/province', Province);
 app.use('/place', Place);
 app.use('/hotel', Hotel);
 app.use('/foodAndDrink', FoodAndDrink);
 app.use('/attraction', Attraction);
+app.use('/profiles', Profiles);
 
 
 

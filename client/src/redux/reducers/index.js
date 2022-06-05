@@ -6,6 +6,10 @@ import Place from "./Place";
 import Hotel from "./Hotel";
 import FoodAndDrink from "./FoodAndDrink";
 import Attraction from "./Attraction";
+import Auth from "./Auth"
+import Account from "./Account"
+import Profile from "./Profile"
+
 
 export default combineReducers({
   posts,
@@ -15,4 +19,6 @@ export default combineReducers({
   Hotel,
   FoodAndDrink,
   Attraction,
+  Account,
+  Profile,
 });

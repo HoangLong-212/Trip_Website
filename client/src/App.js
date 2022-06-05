@@ -15,9 +15,11 @@ function App() {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    dispatch(actions.getProvinces.getProvincesRequest());
-    dispatch(actions.getAttractions.getAttractionsRequest());
-  }, [dispatch]);
+    // dispatch(actions.getProvinces.getProvincesRequest());
+    // dispatch(actions.getAttractions.getAttractionsRequest());
+    dispatch(actions.getAccounts.getAccountsRequest());
+    dispatch(actions.getProfiles.getProfilesRequest());
+  }, [dispatch]); 
   return (
     <div>
       <BrowserRouter>

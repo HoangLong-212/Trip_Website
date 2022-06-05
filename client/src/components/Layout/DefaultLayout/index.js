@@ -19,6 +19,8 @@ function DefaultLayout({ children, backgroundColor = false, childrenOutSide }) {
     dispatch(actions.getAttractions.getAttractionsRequest());
     dispatch(actions.getFoodAndDrinks.getFoodAndDrinksRequest());
     dispatch(actions.getHotels.getHotelsRequest());
+    // dispatch(actions.getProfiles.getProfilesRequest());
+    // dispatch(actions.getAccounts.getAccountsRequest());
 
   }, [dispatch]);
   

@@ -7,6 +7,7 @@ const cx = classNames.bind(styles);
 
 function Button({
   to,
+  type = "button",
   href,
   primary = false,
   medium = false,

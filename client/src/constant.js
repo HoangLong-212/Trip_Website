@@ -2,6 +2,16 @@ export const BACKEND_URL = "http://localhost:5000";
 export const FRONTEND_URL = "http://localhost:3000";
 
 export const INIT_STATE = {
+
+  // Account region
+  Accounts: {
+    isLoading: false,
+    data: [],
+  },
+  AccountModal: {
+    isShow: false,
+  },
+  //
   posts: {
     isLoading: false,
     data: [],
@@ -29,4 +39,13 @@ export const INIT_STATE = {
     isLoading: false,
     data: [],
   },
+   //#region Profile
+   Profiles: {
+    isLoading: false,
+    data: [],
+  },
+  ProfileModal: {
+    isShow: false,
+  },
+
 };

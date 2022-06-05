@@ -2,7 +2,15 @@ import React from "react";
 import classNames from "classnames/bind";
 import * as actions from "@/redux/actions";
 import { useDispatch, useSelector } from "react-redux";
-import { attractionsState$, foodAndDrinksState$, hotelsState$, provincesState$ } from "@/redux/selectors";
+import {
+  AccountsState$,
+  attractionsState$,
+  foodAndDrinksState$,
+  hotelsState$,
+  ProfileModalState$,
+  ProfilesState$,
+  provincesState$,
+} from "@/redux/selectors";
 
 import Banner from "@/components/General/Banner";
 import ListOfBtnImg from "@/components/General/List/ListOfBtnImg";
@@ -16,6 +24,8 @@ function Home() {
   const attraction = useSelector(attractionsState$);
   const foodAndDrink = useSelector(foodAndDrinksState$);
   const hotel = useSelector(hotelsState$);
+
+   
 
   return (
     <div className={cx("wrapper")}>

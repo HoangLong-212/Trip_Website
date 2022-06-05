@@ -9,6 +9,7 @@ import App from "./App";
 import "antd/dist/antd.min.css";
 import GlobalStyles from "@/components/GlobalStyles/GlobalStyles";
 import "@/components/GlobalStyles/AntdFix.css";
+import AuthContextProvider from "./contexts/AuthContext";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -17,9 +18,11 @@ const store = createStore(reducers, applyMiddleware(sagaMiddleware));
 sagaMiddleware.run(mySaga);
 ReactDOM.render(
   <Provider store={store}>
-    <GlobalStyles>
-      <App />
-    </GlobalStyles>
+<AuthContextProvider>
+      <GlobalStyles>
+        <App />
+      </GlobalStyles>
+</AuthContextProvider>
   </Provider>,
   document.getElementById("root")
 );
