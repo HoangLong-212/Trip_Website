@@ -20,6 +20,10 @@ const schema = new mongoose.Schema(
       required: true,
     },
     image:[],
+    path: {
+      type: String,
+      default: "Province",
+    },
   },
 );
 

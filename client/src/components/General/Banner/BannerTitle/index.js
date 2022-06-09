@@ -12,7 +12,7 @@ import styles from "./BannerTitle.module.scss";
 import Banner from "..";
 const cx = classNames.bind(styles);
 
-function BannerTitle({ listBanner, type, slider }) {
+function BannerTitle({ listBannerTitle, type, slider }) {
   let { name } = useParams();
   const url = window.location.pathname;
   const path = url
@@ -23,22 +23,22 @@ function BannerTitle({ listBanner, type, slider }) {
   const headerURL = path[0].split("_");
 
   const [data, setData] = useState(() => {
-    if (listBanner.path === "Place") {
+    if (listBannerTitle.path === "Place") {
       return {
         title: "Cities in " + name,
         description: "",
       };
-    } else if (listBanner.path === "Hotel") {
+    } else if (listBannerTitle.path === "Hotel") {
       return {
         title: "Stay",
         description: "A mix of the charming, iconic, and modern",
       };
-    } else if (listBanner.path === "FoodAndDrink") {
+    } else if (listBannerTitle.path === "FoodAndDrink") {
       return {
         title: "Eat",
         description: "Quintessential " + name + " bistros, bars, and beyond.",
       };
-    } else if (listBanner.path === "Attraction") {
+    } else if (listBannerTitle.path === "Attraction") {
       return {
         title: "Visit",
         description:
@@ -54,15 +54,15 @@ function BannerTitle({ listBanner, type, slider }) {
 
   return (
     <div className={classes}>
-      {listBanner.list.length !== 0 ? (
+      {listBannerTitle.list.length !== 0 ? (
         <div className={cx("inner")}>
           <div className={cx("title")}>
             <p>{data.title}</p>
             <p>{data.description}</p>
-            {listBanner.path !== "Place" ? (
+            {listBannerTitle.path !== "Place" ? (
               <Link
                 to={
-                  "/Filter_" + headerURL[1] + "_" + listBanner.path + "_" + name
+                  "/Filter_" + headerURL[1] + "_" + listBannerTitle.path + "_" + name
                 }
               >
                 <p className={cx("see-all")}>See all</p>
@@ -72,7 +72,7 @@ function BannerTitle({ listBanner, type, slider }) {
           <div className={cx("banner")}>
             <Banner
               className={cx("banner-inner")}
-              listBanner={listBanner}
+              listBanner={listBannerTitle.list}
               type={type}
               number={3}
             />

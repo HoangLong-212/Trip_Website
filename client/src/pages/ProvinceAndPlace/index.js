@@ -78,28 +78,28 @@ function ProvinceAndPlace() {
           <h2>Essential {data.name}</h2>
           <BannerTitle
             type="cardWithBackground"
-            listBanner={{
+            listBannerTitle={{
               path: "Place",
               list: list(places),
             }}
           />
           <BannerTitle
             type="cardWithBackground"
-            listBanner={{
+            listBannerTitle={{
               path: "Attraction",
               list: list(attractions),
             }}
           />
           <BannerTitle
             type="cardWithBackground"
-            listBanner={{
+            listBannerTitle={{
               path: "Hotel",
               list: list(hotels),
             }}
           />
           <BannerTitle
             type="cardWithBackground"
-            listBanner={{
+            listBannerTitle={{
               path: "FoodAndDrink",
               list: list(foodAndDrinks),
             }}

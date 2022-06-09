@@ -10,7 +10,7 @@ import styles from "./Card.module.scss";
 
 const cx = classNames.bind(styles);
 
-function Card({ classNames, value, path }) {
+function Card({ classNames, value }) {
   const navigate = useNavigate();
 
   const classes = cx("wrapper", {
@@ -24,7 +24,7 @@ function Card({ classNames, value, path }) {
 
   return (
     <div className={classes}>
-      <Link to={"/Info_" + path + "_" + value.name}>
+      <Link to={"/Info_" + value.path + "_" + value.name}>
         <div className={cx("inner")} onClick={handleClick}>
           <div className={cx("card-title")}>
             <img src={value.image[0]} alt="" />

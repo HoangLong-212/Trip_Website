@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import classNames from "classnames/bind";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import styles from "./Header.module.scss";
 import NavBar from "./NavBar";
 import Search from "@/components/General/Search";
@@ -8,6 +8,16 @@ import Search from "@/components/General/Search";
 const cx = classNames.bind(styles);
 
 function Header() {
+  const [show, setShow] = useState(false);
+  let { name } = useParams();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShow(window.scrollY >= 244);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+  }, []);
   return (
     <div className={cx("wrapper")}>
       <div className={cx("inner")}>
@@ -18,7 +28,14 @@ function Header() {
           </Link>
         </div>
         <div className={cx("search-navbar")}>
-          <Search />
+          {name !== undefined ? (
+            <Search tippyWidth={"25vw"} />
+          ) : show ? (
+            <Search tippyWidth={"25vw"} />
+          ) : (
+            <div></div>
+          )}
+
           <div className={cx("action")}>
             <NavBar />
           </div>
