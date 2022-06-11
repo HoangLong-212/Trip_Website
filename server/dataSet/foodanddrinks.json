@@ -39,6 +39,7 @@
     "provinceID": {
       "$oid": "62834d22d587a5f7b2b82bac"
     },
+    "path": "FoodAndDrink",
     "__v": 0
   },
   {
@@ -81,6 +82,7 @@
     "provinceID": {
       "$oid": "62834d22d587a5f7b2b82bac"
     },
+    "path": "FoodAndDrink",
     "__v": 0
   },
   {
@@ -123,6 +125,7 @@
     "provinceID": {
       "$oid": "62834d22d587a5f7b2b82bac"
     },
+    "path": "FoodAndDrink",
     "__v": 0
   },
   {
@@ -162,6 +165,7 @@
     "provinceID": {
       "$oid": "628350433f67b71a8812d62b"
     },
+    "path": "FoodAndDrink",
     "__v": 0
   },
   {
@@ -201,6 +205,7 @@
     "provinceID": {
       "$oid": "628350433f67b71a8812d62b"
     },
+    "path": "FoodAndDrink",
     "__v": 0
   },
   {
@@ -240,6 +245,7 @@
     "provinceID": {
       "$oid": "628350433f67b71a8812d62b"
     },
+    "path": "FoodAndDrink",
     "__v": 0
   },
   {
@@ -282,6 +288,7 @@
     "provinceID": {
       "$oid": "62834d22d587a5f7b2b82bac"
     },
+    "path": "FoodAndDrink",
     "__v": 0
   }
 ]

@@ -7,11 +7,22 @@ import CardVertical from "../../Card/CardVertical";
 import { attractionsState$, foodAndDrinksState$ } from "@/redux/selectors";
 import { useSelector } from "react-redux";
 import { MContext } from "@/components/Context/FilterContext";
+import { Pagination } from "antd";
 
 const cx = classNames.bind(styles);
 
 function FilterList({ context, data }) {
   const [state, setState] = useState([]);
+  const [current, setCurrent] = useState(1);
+  const [numberSlice, setNumberSlice] = useState([0, 2]);
+  
+  const onChange = (page) => {
+    setNumberSlice([
+      numberSlice[0] + (page - current) * 2,
+      numberSlice[1] + (page - current) * 2,
+    ]);
+    setCurrent(page);
+  };
 
   const filter = (value, array) => {
     if (array.length !== 0) {
@@ -100,6 +111,7 @@ function FilterList({ context, data }) {
           });
           array = arrayData2;
         }
+
         //Property types
         else {
           array = filter(value, array);
@@ -119,9 +131,22 @@ function FilterList({ context, data }) {
 
   return (
     <div className={cx("wrapper")}>
-      {state.map((value, index) => {
+      {state.slice(numberSlice[0], numberSlice[1]).map((value, index) => {
         return <CardVertical key={index} keys={index} value={value} />;
       })}
+      {state.length !== 0 ? (
+        <div className={cx("pagination")}>
+          <Pagination
+            showTotal={(total, range) =>
+              `${range[0]}-${range[1]} of ${total} items`
+            }
+            defaultCurrent={current}
+            onChange={onChange}
+            total={state.length}
+            pageSize={2}
+          />
+        </div>
+      ) : null}
     </div>
   );
 }

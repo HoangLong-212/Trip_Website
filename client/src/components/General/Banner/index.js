@@ -12,8 +12,8 @@ const cx = classNames.bind(styles);
 
 function Banner({ listBanner, type, title, slider, number = 4, className }) {
   let listBannerNew = listBanner;
-  listBannerNew.list = listBannerNew.list
-    .sort(() => Math.random() - 0.5)
+  listBannerNew = listBannerNew
+    // .sort(() => Math.random() - 0.5)
     .slice(0, 6);
 
   const SlickButtonFix = ({
@@ -24,10 +24,8 @@ function Banner({ listBanner, type, title, slider, number = 4, className }) {
   }) => <span {...passProps}>{children}</span>;
 
   const bannerItems = (value) => ({
-    cardWithBackground: (
-      <Card key={value._id} value={value} path={listBanner.path} />
-    ),
-    card: <CardImage key={value._id} value={value} path={listBanner.path} />,
+    cardWithBackground: <Card key={value._id} value={value} />,
+    card: <CardImage key={value._id} value={value} />,
   });
 
   const settings = {
@@ -57,7 +55,7 @@ function Banner({ listBanner, type, title, slider, number = 4, className }) {
   const CarouselCompo = () => {
     return (
       <Carousel {...settings}>
-        {listBannerNew.list.map((value) => bannerItems(value)[type])}
+        {listBannerNew.map((value) => bannerItems(value)[type])}
       </Carousel>
     );
   };

@@ -20,10 +20,7 @@ function Slider({ className }) {
         <Banner
           slider
           title="Destinations travelers love"
-          listBanner={{ 
-            path: "Province",
-            list: province,
-          }}
+          listBanner={province}
           type="card"
         />
       </div>

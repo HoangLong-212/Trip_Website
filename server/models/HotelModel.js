@@ -130,6 +130,10 @@ const schema = new mongoose.Schema(
       type: Schema.Types.ObjectId,
       ref: "Province",
     },
+    path: {
+      type: String,
+      default: "Hotel",
+    },
   },
 );
 

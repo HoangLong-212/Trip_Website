@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
-function CardImage({ classNames, value, path }) {
+function CardImage({ classNames, value }) {
   const navigate = useNavigate();
 
 
@@ -24,7 +24,7 @@ function CardImage({ classNames, value, path }) {
 
   return (
     <div className={classes}>
-      <Link to={"/Info_" + path + "_" + value.name}>
+      <Link to={"/Info_" + value.path + "_" + value.name}>
         <div className={cx("inner")} onClick={handleClick}>
           <div className={cx("image")}>
             <img src={value.image} alt="" />

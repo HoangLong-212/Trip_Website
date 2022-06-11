@@ -68,9 +68,7 @@ function Sidebar({ parentCallback }) {
   }
 
   const callbackFunction = (childData, context) => {
-    context.setMessage({title: childData.title, data: childData.data});
-    // console.log("childData",childData)
-
+    context.setMessage({ title: childData.title, data: childData.data });
   };
 
   return (
@@ -81,12 +79,36 @@ function Sidebar({ parentCallback }) {
             <CheckBox
               data={dataType.data}
               title={dataType.title}
-              parentCallback={(childData)=>callbackFunction(childData,context)}
+              parentCallback={(childData) =>
+                callbackFunction(childData, context)
+              }
             />
-            <SliderPrice parentCallback={(childData)=>callbackFunction(childData,context)} />
-            <CheckBox star title="Traveler rating" parentCallback={(childData)=>callbackFunction(childData,context)} />
-            <CheckBox data={dataSecond.data} title={dataSecond.title} parentCallback={(childData)=>callbackFunction(childData,context)} />
-            <CheckBox data={dataThird.data} title={dataThird.title} parentCallback={(childData)=>callbackFunction(childData,context)} />
+            <SliderPrice
+              parentCallback={(childData) =>
+                callbackFunction(childData, context)
+              }
+            />
+            <CheckBox
+              star
+              title="Traveler rating"
+              parentCallback={(childData) =>
+                callbackFunction(childData, context)
+              }
+            />
+            <CheckBox
+              data={dataSecond.data}
+              title={dataSecond.title}
+              parentCallback={(childData) =>
+                callbackFunction(childData, context)
+              }
+            />
+            <CheckBox
+              data={dataThird.data}
+              title={dataThird.title}
+              parentCallback={(childData) =>
+                callbackFunction(childData, context)
+              }
+            />
           </SidebarItem>
         )}
       </MContext.Consumer>

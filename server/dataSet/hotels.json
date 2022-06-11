@@ -50,6 +50,7 @@
     "provinceID": {
       "$oid": "62834d22d587a5f7b2b82bac"
     },
+    "path": "Hotel",
     "__v": 0,
     "star": 4
   },
@@ -104,6 +105,7 @@
     "provinceID": {
       "$oid": "62834d22d587a5f7b2b82bac"
     },
+    "path": "Hotel",
     "__v": 0,
     "star": 3
   },
@@ -158,6 +160,7 @@
     "provinceID": {
       "$oid": "62834d22d587a5f7b2b82bac"
     },
+    "path": "Hotel",
     "__v": 0,
     "star": 2
   },
@@ -209,6 +212,7 @@
     "provinceID": {
       "$oid": "628350433f67b71a8812d62b"
     },
+    "path": "Hotel",
     "__v": 0,
     "star": 4
   },
@@ -260,6 +264,7 @@
     "provinceID": {
       "$oid": "628350433f67b71a8812d62b"
     },
+    "path": "Hotel",
     "__v": 0,
     "star": 3
   },
@@ -311,6 +316,7 @@
     "provinceID": {
       "$oid": "628350433f67b71a8812d62b"
     },
+    "path": "Hotel",
     "__v": 0,
     "star": 5
   },
