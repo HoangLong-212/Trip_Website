@@ -4,11 +4,15 @@ import FoodAndDrink from '@/pages/FoodAndDrink';
 import Hotel from '@/pages/Hotel';
 import ProvinceAndPlace from '@/pages/ProvinceAndPlace';
 import Filter from '@/pages/Filter';
-import { FilterLayout, InnerLayout } from '@/components/Layout';
+import { AuthenticationLayout, FilterLayout, InnerLayout } from '@/components/Layout';
+import SignIn from '@/pages/Authentication/SignIn';
+import SignUp from '@/pages/Authentication/SignUp';
 
 //Public Routes
 const publishRoutes = [
     {path: "/", component: Home},
+    {path: "/SignIn", component: SignIn, layout: AuthenticationLayout },
+    {path: "/SignUp", component: SignUp, layout: AuthenticationLayout },
     {path: "/Info_Attraction_:name", component: Attraction, layout: InnerLayout },
     {path: "/Info_FoodAndDrink_:name", component: FoodAndDrink, layout: InnerLayout },
     {path: "/Info_Hotel_:name", component: Hotel, layout: InnerLayout },
