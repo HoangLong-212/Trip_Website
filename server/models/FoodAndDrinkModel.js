@@ -88,8 +88,11 @@ const schema = new mongoose.Schema(
       type: Schema.Types.ObjectId,
       ref: "Province",
     },
+    path: {
+      type: String,
+      default: "FoodAndDrink",
+    },
   },
-  { timestamps: true }
 );
 
 export const FoodAndDrinkModel = mongoose.model("FoodAndDrink", schema);

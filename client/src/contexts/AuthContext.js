@@ -1,7 +1,8 @@
-import React, { createContext, useEffect, useReducer } from "react";
-import * as api from "../api"
-import { messageSuccess } from "../components/message";
-import AuthReducer from "../redux/reducers/Auth";
+
+import { createContext, useEffect, useReducer } from "react";
+import * as api from "../api";
+import { messageSuccess } from "@/components/General/Message";
+import { AuthReducer } from "../redux/reducers/Auth";
 
 export const AuthContext = createContext();
 
@@ -9,79 +10,100 @@ const AuthContextProvider = ({ children }) => {
   const [authState, dispatch] = useReducer(AuthReducer, {
     authLoading: true,
     isAuthenticated: false,
-    Account: null,
+
+    user: null,
+    profile: null,
+    myTrip: null,
   });
 
-  //#region Authenticate if user is logged in
-  const loadAccount = async () => {
+  // Authenticate user
+  const loadUser = async () => {
     if (localStorage["Auth_Token"]) {
-      console.log(`${localStorage["Auth_Token"]}`);
+
       api.setAuthToken(localStorage["Auth_Token"]);
     }
 
     try {
       const response = await api.verifyAuthToken();
+      // console.log("response", response);
       if (response.data.success) {
         dispatch({
           type: "SET_AUTH",
-          payload: { isAuthenticated: true, Account: response.data.Account },
+          payload: {
+            isAuthenticated: true,
+            user: response.data.user,
+            profile: response.data.profile,
+            myTrip: response.data.myTrip,
+          },
         });
       }
     } catch (error) {
+      // console.log("response.dataasdasda");
       localStorage.removeItem("Auth_Token");
       api.setAuthToken(null);
       dispatch({
         type: "SET_AUTH",
-        payload: { isAuthenticated: false, Account: null },
+        payload: { isAuthenticated: false, user: null },
       });
     }
   };
-  //#endregion
 
-  //#region login
-  const signInAccount = async (userForm) => {
+  useEffect(() => {
+    loadUser();
+  }, []);
+
+  // Login
+  const loginUser = async (userForm) => {
     try {
-      const response = await api.signInAccount(userForm);
+      const response = await api.loginUser(userForm);
       if (response.data.success) {
+        // console.log("Alibaba");
         localStorage.setItem("Auth_Token", response.data.accessToken);
       }
 
-      loadAccount();
-      messageSuccess("Login Success");
+      await loadUser();
+      messageSuccess("Login successful!");
+      return response.data;
+    } catch (error) {
+      if (error.response.data) return error.response.data;
+      else return { success: false, message: error.message };
+    }
+  };
+
+  // Register
+  const registerUser = async (userForm, profileForm) => {
+    try {
+      const response = await api.registerUser(userForm, profileForm);
+
+      if (response.data.success)
+        localStorage.setItem("Auth_Token", response.data.accessToken);
+
+      await loadUser();
 
       return response.data;
     } catch (error) {
-      if (error.data) {
-        return error.data;
-      } else {
-        return { success: false, message: error.message };
-      }
+      if (error.response.data) return error.response.data;
+      else return { success: false, message: error.message };
     }
   };
-  //#endregion
 
-  //#region logout
-  const logoutAccount = () => {
+  // Logout
+  const logoutUser = () => {
     localStorage.removeItem("Auth_Token");
     dispatch({
       type: "SET_AUTH",
-      payload: { isAuthenticated: false, Account: null },
+      payload: { isAuthenticated: false, user: null, myTrip:null },
     });
   };
-  //#endregion
 
-  //#region context data
-  const authContextData = { signInAccount, logoutAccount, authState };
-  //#endregion
+  // Context data
+  const authContextData = { loginUser, registerUser, logoutUser, authState };
 
-  useEffect(() => loadAccount(), []);
-
-  //return provider
+  // Return provider
   return (
     <AuthContext.Provider value={authContextData}>
       {children}
     </AuthContext.Provider>
   );
 };
-
 export default AuthContextProvider;

@@ -9,15 +9,24 @@ import {
   attractionsState$,
   foodAndDrinksState$,
   hotelsState$,
+  placesState$,
+  provincesState$,
 } from "@/redux/selectors";
-import {  useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 
 function InnerLayout({ children }) {
+
+  let { name } = useParams();
+
+
   const attractions = useSelector(attractionsState$);
   const foodAndDrinks = useSelector(foodAndDrinksState$);
   const hotels = useSelector(hotelsState$);
+  const provinces = useSelector(provincesState$);
+  const places = useSelector(placesState$);
 
 
   const url = window.location.pathname;
@@ -26,21 +35,29 @@ function InnerLayout({ children }) {
     .split("/")
     .filter((x) => x);
 
-  const headerURL = path[0].split("-");
+  const headerURL = path[0].split("_");
 
-  let dataSet;
+  let dataSet;  
 
-  if (headerURL[0] === "Attraction") {
+  if (headerURL[1] === "Attraction") {
     dataSet = attractions.find(function (dataSet) {
-      return dataSet.name === headerURL[1];
+      return dataSet.name === name;
     });
-  } else if (headerURL[0] === "FoodAndDrink") {
+  } else if (headerURL[1] === "FoodAndDrink") {
     dataSet = foodAndDrinks.find(function (dataSet) {
-      return dataSet.name === headerURL[1];
+      return dataSet.name === name;
     });
-  } else if (headerURL[0] === "Hotel") {
+  } else if (headerURL[1] === "Hotel") {
     dataSet = hotels.find(function (dataSet) {
-      return dataSet.name === headerURL[1];
+      return dataSet.name === name;
+    });
+  } else if (headerURL[1] === "Province") {
+    dataSet = provinces.find(function (dataSet) {
+      return dataSet.name === name;
+    });
+  } else if (headerURL[1] === "Place") {
+    dataSet = places.find(function (dataSet) {
+      return dataSet.name === name;
     });
   }
 
@@ -53,12 +70,25 @@ function InnerLayout({ children }) {
     evaluatePoint: -1,
   });
 
-  if (dataSet !== undefined && data.name === "") {
-    setData(dataSet);
+  if (dataSet !== undefined) {
+    if (data.name === "") {
+      setData(dataSet);
+    } 
+    else if (data.name !== dataSet.name) {
+      setData(dataSet);
+    }
   }
 
   return (
-    <DefaultLayout backgroundColor childrenOutSide={<TopContent data={data} />}>
+    <DefaultLayout
+      backgroundColor={headerURL[1] === "Province" || headerURL[1] === "Place"  ? false : true}
+      childrenOutSide={
+        <TopContent
+          data={data}
+          display={headerURL}
+        />
+      }
+    >
       <div className={cx("wrapper")}>
         <div className={cx("container")}>
           <ImgContent data={data.image} name={data.name} />

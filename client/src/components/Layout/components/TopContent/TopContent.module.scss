@@ -1,6 +1,4 @@
 .wrapper {
-  // display: flex;
-  // flex-direction: column;
   padding-top: 80px;
   background-color: #fff;
   width: 100%;
@@ -20,9 +18,10 @@
 }
 
 .top-content {
+  height: 100%;
   justify-content: space-between;
-
-  p {
+  align-content: center;
+  span {
     font-size: 4.2rem;
     font-weight: bold;
   }

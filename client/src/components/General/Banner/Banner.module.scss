@@ -13,24 +13,21 @@
   }
 }
 
-.btn1,
-.btn2 {
+.prevArrow-btn,
+.nextArrow-btn {
   position: absolute;
 }
 
-.btn1 {
+.prevArrow-btn {
   top: 30%;
   left: 20%;
   transform: translateY(-50%);
 }
 
-.btn2 {
+.nextArrow-btn {
   top: 30%;
   right: 20%;
   transform: translateY(-50%);
 }
 
-.banner {
-  display: flex !important;
-  justify-content: space-between !important;
-}
+

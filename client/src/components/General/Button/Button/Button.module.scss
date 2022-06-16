@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .wrapper{
     min-width: 130px;
     font-size: 20px;
@@ -7,17 +8,28 @@
     background-color: #fff;
     line-height: 100%;
     cursor: pointer;
+=======
+.wrapper {
+  min-width: 340px;
+  font-size: 1.6rem;
+  font-weight: 600;
+  padding: 7px 16px;
+  border-radius: 20px;
+  background-color: #fff;
+  cursor: pointer;
+>>>>>>> 789706a49daef8418f2756b81e8f93661e7b2c10
 
-    + .wrapper{
-        margin-left: 20px
-    }
+  + .wrapper {
+    margin-left: 20px;
+  }
 
-    &.disabled {
-        pointer-events: none;
-        opacity: 0.5;
-    }
+  &.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
 }
 
+<<<<<<< HEAD
 .primary{
     min-width: 340px;
     height: 48px;
@@ -44,10 +56,27 @@
         background-color: rgba(0, 0, 0, 0.07);
         
     }
+=======
+.primary {
+  background-color: var(--green-light);
+  color: #fff !important;
+
+  &:hover {
+    background-color: var(--green-dark);
+  }
+}
+
+.text {
+  min-width: 0px;
+  padding: 7px 16px;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.07);
+  }
+>>>>>>> 789706a49daef8418f2756b81e8f93661e7b2c10
 }
 
 //Button size
-.medium{
-    min-width: 100px;
-    padding: 11px 16px;
+.medium {
+  min-width: 100px;
+  padding: 12px 32px;
 }

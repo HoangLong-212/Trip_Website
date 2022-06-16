@@ -14,8 +14,7 @@ function ImageModal({ data, display, name }) {
 
   const [displayImg, setDisplayImg] = useState(display);
 
-
-  if(isShow && displayImg === undefined) {
+  if (isShow && displayImg === undefined) {
     setDisplayImg(display);
   }
   const dispatch = useDispatch();
@@ -24,6 +23,8 @@ function ImageModal({ data, display, name }) {
     dispatch(actions.hideModal());
     setDisplayImg();
   }, [dispatch]);
+
+  
 
   return (
     <Modal
@@ -39,7 +40,13 @@ function ImageModal({ data, display, name }) {
         </div>
         <div className={cx("gird-img")}>
           {data.map((value, index) => {
-            return <img key={index} src={value} onClick={()=> setDisplayImg(value)} />;
+            return (
+              <img
+                key={index}
+                src={value}
+                onClick={() => setDisplayImg(value)}
+              />
+            );
           })}
         </div>
       </div>

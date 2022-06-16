@@ -20,8 +20,11 @@ const schema = new mongoose.Schema(
       required: true,
     },
     image:[],
+    path: {
+      type: String,
+      default: "Province",
+    },
   },
-  { timestamps: true }
 );
 
 export const ProvinceModel = mongoose.model("Province", schema);

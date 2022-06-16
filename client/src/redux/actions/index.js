@@ -7,55 +7,25 @@ export const getType = (reduxAction) => {
 export const showModal = createAction('SHOW_MODAL')
 export const hideModal = createAction('HIDE_MODAL')
 
-//#region TaiKhoan
-export const getAccounts = createActions({
-  getAccountsRequest: undefined,
-  getAccountsSuccess: (payload) => payload,
-  getAccountsFailure: (err) => err,
-});
+export const showHotelModal = createAction('SHOW_HOTEL_MODAL')
+export const hideHotelModal = createAction('HIDE_HOTEL_MODAL')
 
-export const createAccount = createActions({
-  createAccountRequest: (payload) => payload,
-  createAccountSuccess: (payload) => payload,
-  createAccountFailure: (err) => err,
-});
+export const showChooseCollectionModal = createAction('SHOW_CHOOSE_COLLECTION_MODAL')
+export const hideChooseCollectionModal = createAction('HIDE_CHOOSE_COLLECTION_MODAL')
 
-export const updateAccount = createActions({
-  updateAccountRequest: (payload) => payload,
-  updateAccountSuccess: (payload) => payload,
-  updateAccountFailure: (err) => err,
-  
-});
-export const showAccountModal = createAction("SHOW_ACCOUNT_MODAL");
-export const hideAccountModal = createAction("HIDE_ACCOUNT_MODAL");
-
-//#region Profile
-export const getProfiles = createActions({
-  getProfilesRequest: undefined,
-  getProfilesSuccess: (payload) => payload,
-  getProfilesFailure: (err) => err,
-});
-
-export const createProfile = createActions({
-  createProfileRequest: (payload) => payload,
-  createProfileSuccess: (payload) => payload,
-  createProfileFailure: (err) => err,
-});
-
-export const updateProfile = createActions({
-  updateProfileRequest: (payload) => payload,
-  updateProfileSuccess: (payload) => payload,
-  updateProfileFailure: (err) => err,
-});
-
-export const showProfileModal = createAction("SHOW_PROFILE_MODAL");
-export const hideProfileModal = createAction("HIDE_PROFILE_MODAL");
-
+export const showCreateCollectionModal = createAction('SHOW_CREATE_COLLECTION_MODAL')
+export const hideCreateCollectionModal = createAction('HIDE_CREATE_COLLECTION_MODAL')
 
 export const getPosts = createActions({
   getPostsRequest: undefined,
   getPostsSuccess: (payload) => payload,
   getPostsFailure: (err) => err,
+});
+
+export const getProfiles = createActions({
+  getProfilesRequest: undefined,
+  getProfilesSuccess: (payload) => payload,
+  getProfilesFailure: (err) => err,
 });
 
 export const getProvinces = createActions({
@@ -87,4 +57,22 @@ export const getAttractions = createActions({
   getAttractionsSuccess: (payload) => payload,
   getAttractionsFailure: (err) => err,
 });
+
+export const getMyTrips = createActions({
+  getMyTripsRequest: undefined,
+  getMyTripsSuccess: (payload) => payload,
+  getMyTripsFailure: (err) => err,
+});
+
+export const createCollections = createActions({
+  createCollectionsRequest: (payload)=>payload,
+  createCollectionsSuccess: (payload)=>payload,
+  createCollectionsFailure: (err)=>err,
+})
+
+export const createPlaceLists = createActions({
+  createPlaceListsRequest: (payload)=>payload,
+  createPlaceListsSuccess: (payload)=>payload,
+  createPlaceListsFailure: (err)=>err,
+})
 
