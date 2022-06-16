@@ -166,17 +166,17 @@ function* mySaga() {
   //#region Profile
   yield takeLatest(
     actions.getProfiles.getProfilesRequest,
-    fetchProfilesSaga
+    // fetchProfilesSaga
   );
 
   yield takeLatest(
     actions.createProfile.createProfileRequest,
-    createProfilesSaga
+    // createProfilesSaga
   );
 
   yield takeLatest(
     actions.updateProfile.updateProfileRequest,
-    updateProfileSaga
+    // updateProfileSaga
   );
   yield takeLatest(actions.getPosts.getPostsRequest, fetchPostsSaga);
 

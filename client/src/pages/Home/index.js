@@ -3,18 +3,9 @@ import classNames from "classnames/bind";
 import * as actions from "@/redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import {
-<<<<<<< HEAD
-  AccountsState$,
   attractionsState$,
   foodAndDrinksState$,
   hotelsState$,
-  ProfileModalState$,
-  ProfilesState$,
-=======
-  attractionsState$,
-  foodAndDrinksState$,
-  hotelsState$,
->>>>>>> 789706a49daef8418f2756b81e8f93661e7b2c10
   provincesState$,
 } from "@/redux/selectors";
 
@@ -30,9 +21,6 @@ function Home() {
   const foodAndDrink = useSelector(foodAndDrinksState$);
   const hotel = useSelector(hotelsState$);
 
-<<<<<<< HEAD
-   
-=======
   const [show, setShow] = useState(false);
   const [value, setValue] = useState();
 
@@ -48,7 +36,6 @@ function Home() {
     setValue(childData);
     // return childData;
   }, []);
->>>>>>> 789706a49daef8418f2756b81e8f93661e7b2c10
 
   return (
     <div className={cx("wrapper")}>

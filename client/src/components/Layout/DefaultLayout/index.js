@@ -20,13 +20,7 @@ function DefaultLayout({ children, backgroundColor = false, childrenOutSide }) {
     dispatch(actions.getAttractions.getAttractionsRequest());
     dispatch(actions.getFoodAndDrinks.getFoodAndDrinksRequest());
     dispatch(actions.getHotels.getHotelsRequest());
-<<<<<<< HEAD
-    // dispatch(actions.getProfiles.getProfilesRequest());
-    // dispatch(actions.getAccounts.getAccountsRequest());
-
-=======
     dispatch(actions.getProfiles.getProfilesRequest());
->>>>>>> 789706a49daef8418f2756b81e8f93661e7b2c10
   }, [dispatch]);
   
   const classes = cx("wrapper", {

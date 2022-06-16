@@ -3,14 +3,10 @@ import { useSelector } from "react-redux";
 import styles from "./NavBar.module.scss";
 import classNames from "classnames/bind";
 import Button from "@/components/General/Button/Button";
-<<<<<<< HEAD
-import { Path } from "react-router-dom";
-=======
 import { AuthContext } from "@/contexts/AuthContext";
 import { profilesState$ } from "@/redux/selectors";
 import { Form, Skeleton, Spin } from "antd";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
->>>>>>> 789706a49daef8418f2756b81e8f93661e7b2c10
 
 const cx = classNames.bind(styles);
 
@@ -63,19 +59,11 @@ function NavBar() {
 
   return (
     <div className={cx("wrapper")}>
-<<<<<<< HEAD
-      <Button text >
-        Trips</Button>
-      <Button text to={"/SignIn"}>Login</Button>
-      <Button primary medium>
-        Register
-=======
       <Button text>
         <span className={cx("icon-trips")}>
           <AiOutlineHeart className={cx("btn-icon")} />
           <p>Trips</p>
         </span>
->>>>>>> 789706a49daef8418f2756b81e8f93661e7b2c10
       </Button>
       {body}
     </div>

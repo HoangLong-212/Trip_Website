@@ -52,20 +52,8 @@ export const INIT_STATE = {
     isLoading: false,
     data: [],
   },
-<<<<<<< HEAD
-   //#region Profile
-   Profiles: {
-    isLoading: false,
-    data: [],
-  },
-  ProfileModal: {
-    isShow: false,
-  },
-
-=======
   MyTrip: {
     isLoading: false,
     data: [],
   },
->>>>>>> 789706a49daef8418f2756b81e8f93661e7b2c10
 };
