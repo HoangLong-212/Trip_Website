@@ -29,9 +29,9 @@ function Header() {
         </div>
         <div className={cx("search-navbar")}>
           {name !== undefined ? (
-            <Search tippyWidth={"25vw"} />
+            <Search tippyWidth={"30vw"} />
           ) : show ? (
-            <Search tippyWidth={"25vw"} />
+            <Search tippyWidth={"30vw"} />
           ) : (
             <div></div>
           )}

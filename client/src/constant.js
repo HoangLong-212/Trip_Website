@@ -12,6 +12,16 @@ export const INIT_STATE = {
   HotelModal: {
     isShow: false,
   },
+  ChooseCollectionModal: {
+    isShow: false,
+  },
+  CreateCollectionModal: {
+    isShow: false,
+  },
+  Profile: {
+    isLoading: false,
+    data: [],
+  },
   Province: {
     isLoading: false,
     data: [],
@@ -29,6 +39,10 @@ export const INIT_STATE = {
     data: [],
   },
   Attraction: {
+    isLoading: false,
+    data: [],
+  },
+  MyTrip: {
     isLoading: false,
     data: [],
   },
