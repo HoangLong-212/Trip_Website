@@ -12,6 +12,7 @@ export default function MyTripReducers(state = INIT_STATE.MyTrip, action) {
       return {
         ...state,
         isLoading: true,
+        
       };
     case getType(getMyTrips.getMyTripsSuccess):
       return {

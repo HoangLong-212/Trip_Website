@@ -9,25 +9,19 @@ import { AuthContext } from "@/contexts/AuthContext";
 
 const cx = classNames.bind(styles);
 
-function CollectionList() {
+function CollectionList({data}) {
   const dispatch = useDispatch();
-
+  const myTrip = useSelector(myTripsState$)
   const {
-    authState: { authLoading, isAuthenticated, user, profile, myTrip },
+    authState: { authLoading, isAuthenticated, user, profile },
   } = useContext(AuthContext);
 
-  // const myTrip = useSelector(myTripsState$);
-
-  console.log("myTrip", myTrip);
-
-  // React.useEffect(() => {
-  //   dispatch(actions.getMyTrips.getMyTripsRequest());
-  // }, [dispatch]);
+  // console.log("myTrip", myTrip);
 
   return (
     <div>
       {myTrip && myTrip.collections.map((value) => (
-        <CollectionItem key={value._id} data={value} />
+        <CollectionItem key={value._id} value={value} data={data} UserID={myTrip.UserID} />
       ))}
     </div>
   );

@@ -56,7 +56,10 @@ function Card({ classNames, value }) {
         </div>
       </Link>
       <div>
-        <IconButton className={cx("card-icon")} />
+        <IconButton
+          className={cx("card-icon")}
+          data={{ placeList_id: value._id, externalModelType: value.path }}
+        />
       </div>
     </div>
   );

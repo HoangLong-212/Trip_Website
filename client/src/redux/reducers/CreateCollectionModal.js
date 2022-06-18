@@ -6,10 +6,12 @@ export default function CreateCollectionModalsReducers(state = INIT_STATE.Create
     case getType(showCreateCollectionModal):
       return {
         isShow: true,
+        data: action.payload,
       };
     case getType(hideCreateCollectionModal):
       return {
         isShow: false,
+        data: null
       };
 
     default:

@@ -1,7 +1,7 @@
 export const AuthReducer = (state, action) => {
   const {
     type,
-    payload: { isAuthenticated, user, profile, myTrip },
+    payload: { isAuthenticated, user, profile },
   } = action;
 
   switch (type) {
@@ -12,7 +12,6 @@ export const AuthReducer = (state, action) => {
         isAuthenticated,
         user,
         profile,
-        myTrip,
       };
 
     default:

@@ -38,7 +38,7 @@ export const fetchFoodAndDrink = () => axios.get(`${URL}/foodAndDrink`);
 
 export const fetchAttraction = () => axios.get(`${URL}/attraction`);
 
-export const fetchMyTrip = () => axios.get(`${URL}/myTrip`);
+export const fetchMyTrip = (payload) => axios.get(`${URL}/myTrip/${payload}`);
 export const createCollections = (payload) => axios.patch(`${URL}/myTrip/${payload.UserID}`, payload);
 export const createPlaceLists = (payload) => axios.patch(`${URL}/myTrip/${payload.UserID}/${payload.collectionID}`, payload);
 

@@ -8,7 +8,7 @@ import {
 const router = express.Router();
 //http://localhost:5000
 
-router.get("/", getMyTrip);
+router.get("/:UserID", getMyTrip);
 router.patch("/:UserID", createCollections);
 router.patch("/:UserID/:collectionID", createPlaceList);
 export default router;

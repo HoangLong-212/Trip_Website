@@ -15,7 +15,6 @@ const cx = classNames.bind(styles);
 function TopContent({ data, display }) {
   let { name } = useParams();
   let title;
-  // console.log("display",display[0]);
 
   if (display[0] === "Filter") {
     if (display[2] === "Attraction") {
@@ -56,7 +55,13 @@ function TopContent({ data, display }) {
         <div className={cx("top-content")}>
           {title}
           {display[0] !== "Filter" ? (
-            <IconButton className={cx("icon-btn")} />
+            <IconButton
+              className={cx("icon-btn")}
+              data={{
+                placeList_id: data._id,
+                externalModelType: data.path,
+              }}
+            />
           ) : null}
         </div>
         {display[0] !== "Filter" &&

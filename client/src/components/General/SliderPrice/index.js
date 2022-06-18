@@ -8,6 +8,7 @@ function SliderPrice({parentCallback}) {
   const [price, setPrice] = useState([0, 100]);
 
   const onChange = (newValue) => {
+    
     setPrice(newValue);
     parentCallback({
       title: "Price",

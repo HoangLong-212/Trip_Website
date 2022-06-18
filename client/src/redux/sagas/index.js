@@ -75,7 +75,7 @@ function* fetchAttractionSaga(action) {
 
 function* fetchMyTripsSaga(action) {
   try {
-    const myTrip = yield call(api.fetchMyTrip);
+    const myTrip = yield call(api.fetchMyTrip, action.payload);
 
     yield put(actions.getMyTrips.getMyTripsSuccess(myTrip.data));
   } catch (error) {
@@ -85,6 +85,7 @@ function* fetchMyTripsSaga(action) {
 
 function* fetchCreateCollectionsSaga(action) {
   try {
+
     const collections = yield call(api.createCollections, action.payload);
 
     yield put(actions.createCollections.createCollectionsSuccess(collections.data));
