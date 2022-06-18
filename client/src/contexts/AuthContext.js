@@ -11,7 +11,6 @@ const AuthContextProvider = ({ children }) => {
     isAuthenticated: false,
     user: null,
     profile: null,
-    myTrip: null,
   });
 
   // Authenticate user
@@ -30,7 +29,6 @@ const AuthContextProvider = ({ children }) => {
             isAuthenticated: true,
             user: response.data.user,
             profile: response.data.profile,
-            myTrip: response.data.myTrip,
           },
         });
       }
@@ -40,7 +38,11 @@ const AuthContextProvider = ({ children }) => {
       api.setAuthToken(null);
       dispatch({
         type: "SET_AUTH",
-        payload: { isAuthenticated: false, user: null },
+        payload: {
+          isAuthenticated: false,
+          user: null,
+          profile: null,
+        },
       });
     }
   };
@@ -76,6 +78,7 @@ const AuthContextProvider = ({ children }) => {
         localStorage.setItem("Auth_Token", response.data.accessToken);
 
       await loadUser();
+      messageSuccess("Register successful!");
 
       return response.data;
     } catch (error) {
@@ -89,12 +92,21 @@ const AuthContextProvider = ({ children }) => {
     localStorage.removeItem("Auth_Token");
     dispatch({
       type: "SET_AUTH",
-      payload: { isAuthenticated: false, user: null, myTrip:null },
+      payload: {
+        isAuthenticated: false,
+        user: null,
+        profile: null,
+      },
     });
   };
 
   // Context data
-  const authContextData = { loginUser, registerUser, logoutUser, authState };
+  const authContextData = {
+    loginUser,
+    registerUser,
+    logoutUser,
+    authState,
+  };
 
   // Return provider
   return (

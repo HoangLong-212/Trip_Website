@@ -2,28 +2,15 @@ import { MyTripModel } from "../models/MyTripModel.js";
 
 export const getMyTrip = async (req, res) => {
   try {
-    // const post = new MyTripModel({
-    //   collections: [
-    //     {
-    //       name: "Long",
-    //       placeList: [
-    //         {
-    //           placeList_id: "62835e50bbcfaf241dc01a16",
-    //           externalModelType: "Place",
-    //         },
-    //       ],
-    //     },
-    //   ],
-
-    //   UserID: "62a97f0ea9a9b90f1d1cd37b",
-    // });
-    // post.save();
-    await MyTripModel.find()
+    const { UserID } = req.params;
+    await MyTripModel.findOne({ UserID: UserID })
       .populate("collections.placeList.placeList_id")
       .exec()
       .then((myTrip) => {
         res.status(200).json(myTrip);
       });
+
+    // return res.status(200).json(myTrip);
   } catch (err) {
     res.status(500).json({ error: err });
   }
@@ -31,16 +18,35 @@ export const getMyTrip = async (req, res) => {
 
 export const createCollections = async (req, res) => {
   try {
-    const nameCollection = req.body;
-    const newCollection = { name: nameCollection, placeList: [] };
-    const UserID = req.params;
-    const myTrip = await MyTripModel.findOneAndUpdate(
-      { UserID: UserID },
-      { $push: { collections: newCollection } },
-      { new: true }
+    const dataCollection = req.body;
+    // console.log(dataCollection);
+
+    const newCollection = {
+      name: dataCollection.name,
+      placeList: [
+        {
+          placeList_id: dataCollection.placeList_id,
+          externalModelType: dataCollection.externalModelType,
+        },
+      ],
+    };
+
+    const { UserID } = req.params;
+
+    const myTrip = await MyTripModel.findOne({ UserID: UserID });
+
+    myTrip.collections.push(newCollection);
+
+    await myTrip.save().then((trip) =>
+      MyTripModel.findById(trip._id)
+        .populate("collections.placeList.placeList_id")
+        .exec()
+        .then((myTrip) => {
+          res.status(200).json(myTrip);
+        })
     );
 
-    res.status(200).json(myTrip);
+    // res.status(200).json(myTrip);
   } catch (err) {
     res.status(500).json({ error: err });
   }
@@ -48,19 +54,30 @@ export const createCollections = async (req, res) => {
 
 export const createPlaceList = async (req, res) => {
   try {
-    const newPlaceItem = req.body;
-    const { UserID, collectionID } = req.params;
-    const myTrip = await MyTripModel.findOne({ UserID: UserID }).then(
-      (data) => {
-        data.collections.findOneAndUpdate(
-          { _id: collectionID },
-          { $push: { placeList: newPlaceItem } },
-          { new: true }
-        );
-      }
-    );
+    const { placeList_id, externalModelType } = req.body;
 
-    res.status(200).json(myTrip);
+    const { UserID, collectionID } = req.params;
+    // console.log("MyTripModel", MyTripModel);
+
+    await MyTripModel.findOneAndUpdate(
+      { UserID: UserID, "collections._id": collectionID },
+      {
+        $push: {
+          "collections.$.placeList": {
+            placeList_id: placeList_id,
+            externalModelType: externalModelType,
+          },
+        },
+      },
+      { new: true }
+    )
+      .populate("collections.placeList.placeList_id")
+      .exec()
+      .then((myTrip) => {
+        res.status(200).json(myTrip);
+      });
+
+    // res.status(200).json(myTrip);
   } catch (err) {
     res.status(500).json({ error: err });
   }

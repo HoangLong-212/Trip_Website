@@ -4,16 +4,19 @@ import styles from "./AuthenticationLayout.module.scss";
 import { AuthContext } from "@/contexts/AuthContext";
 import { Form, Input, Spin } from "antd";
 import { Link, useNavigate, Navigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import * as actions from "@/redux/actions";
+
 const cx = classNames.bind(styles);
 
 function AuthenticationLayout({ children }) {
   const url = window.location.pathname;
   const path = url.split("/").filter((x) => x);
-
+  const dispatch = useDispatch();
   const {
     authState: { authLoading, isAuthenticated, user },
   } = useContext(AuthContext);
-
+  
   let body;
 
   if (authLoading) {
@@ -23,6 +26,7 @@ function AuthenticationLayout({ children }) {
       </div>
     );
   } else if (isAuthenticated) {
+    
     return <Navigate to={"/"} />;
   } else {
     body = children;

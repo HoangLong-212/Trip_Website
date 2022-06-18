@@ -44,6 +44,6 @@ export const INIT_STATE = {
   },
   MyTrip: {
     isLoading: false,
-    data: [],
+    data: null,
   },
 };

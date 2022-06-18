@@ -59,7 +59,7 @@ export const getAttractions = createActions({
 });
 
 export const getMyTrips = createActions({
-  getMyTripsRequest: undefined,
+  getMyTripsRequest: (payload) => payload,
   getMyTripsSuccess: (payload) => payload,
   getMyTripsFailure: (err) => err,
 });

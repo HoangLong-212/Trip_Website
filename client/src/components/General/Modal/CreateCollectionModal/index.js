@@ -2,10 +2,11 @@ import {
   chooseCollectionModalState$,
   createCollectionModalState$,
   modalState$,
+  myTripsState$,
 } from "@/redux/selectors";
 import { Modal } from "antd";
 import classNames from "classnames/bind";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "@/redux/actions";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
@@ -15,17 +16,32 @@ import { Form, Input, Spin } from "antd";
 import styles from "./CreateCollectionModal.module.scss";
 import CollectionList from "../../List/CollectionList";
 import Button from "../../Button/Button";
+import { AuthContext } from "@/contexts/AuthContext";
 
 const cx = classNames.bind(styles);
 
-function CreateCollectionModal({ data, display, name }) {
-  const { isShow } = useSelector(createCollectionModalState$);
+function CreateCollectionModal({ display, name }) {
+  const { isShow, data } = useSelector(createCollectionModalState$);
+  // console.log("data",data)
+  const myTrip = useSelector(myTripsState$);
+
+  const [nameCollection, setNameCollection] = useState({
+    name: "",
+  });
 
   const dispatch = useDispatch();
 
   const handleCancel = React.useCallback(() => {
     dispatch(actions.hideCreateCollectionModal());
   }, [dispatch]);
+
+  const handleOK = React.useCallback(() => {
+    const finalData = { ...nameCollection, ...data, UserID: myTrip.UserID };
+    // console.log("finalData", finalData);
+
+    dispatch(actions.createCollections.createCollectionsRequest(finalData));
+    handleCancel();
+  }, [dispatch, data, nameCollection, myTrip]);
 
   const title = (
     <span className={cx("icon-title")}>
@@ -50,8 +66,8 @@ function CreateCollectionModal({ data, display, name }) {
         <Form
           name="basic"
           layout="vertical"
-          onFinish={{}}
-          onFinishFailed={{}}
+          onFinish={handleOK}
+          // onFinishFailed={{}}
           autoComplete="off"
         >
           <Form.Item
@@ -66,13 +82,13 @@ function CreateCollectionModal({ data, display, name }) {
             ]}
           >
             <Input
-            // value={loginForm.email}
-            // onChange={(e) =>
-            //   setLoginForm({ ...loginForm, email: e.target.value })
-            // }
+              value={nameCollection.name}
+              onChange={(e) =>
+                setNameCollection({ ...nameCollection, name: e.target.value })
+              }
             />
           </Form.Item>
-          <Form.Item wrapperCol={{offset: 3}} style={{marginTop: "28px"}}>
+          <Form.Item wrapperCol={{ offset: 3 }} style={{ marginTop: "28px" }}>
             <Button primary>Create</Button>
           </Form.Item>
         </Form>

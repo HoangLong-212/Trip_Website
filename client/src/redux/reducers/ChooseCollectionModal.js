@@ -6,10 +6,12 @@ export default function ChooseCollectionModalsReducers(state = INIT_STATE.Choose
     case getType(showChooseCollectionModal):
       return {
         isShow: true,
+        data: action.payload,
       };
     case getType(hideChooseCollectionModal):
       return {
         isShow: false,
+        data: null,
       };
 
     default:

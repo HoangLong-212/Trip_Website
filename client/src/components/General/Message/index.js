@@ -1,7 +1,7 @@
 import { message } from "antd";
 
 export const messageError = (content) => {
-  console.log("alskdhlashdhlh", content);
+  // console.log("alskdhlashdhlh", content);
   if (content !== null && typeof content !== "undefined" && content !== "") {
     message.error(content);
   }

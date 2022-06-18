@@ -7,25 +7,25 @@ import * as actions from "@/redux/actions";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { BsPlusSquare } from "react-icons/bs";
 
-
 import styles from "./MyTripModal.module.scss";
 import CollectionList from "../../List/CollectionList";
 
 const cx = classNames.bind(styles);
 
-function MyTripModal({ data, display, name }) {
-  const { isShow } = useSelector(chooseCollectionModalState$);
-
+function MyTripModal({ display, name, ...props }) {
+  const { isShow, data } = useSelector(chooseCollectionModalState$);
+  // console.log("ahjdasjkdhakjsd", data)
   const dispatch = useDispatch();
+
 
   const handleCancel = React.useCallback(() => {
     dispatch(actions.hideChooseCollectionModal());
   }, [dispatch]);
 
   const openCreateCollectionModal = React.useCallback(() => {
-    dispatch(actions.showCreateCollectionModal());
+    dispatch(actions.showCreateCollectionModal(data));
     handleCancel();
-  }, [dispatch]);
+  }, [dispatch, data]);
 
   const title = (
     <span className={cx("icon-title")}>
@@ -43,6 +43,7 @@ function MyTripModal({ data, display, name }) {
 
   return (
     <Modal
+      {...props}
       title={title}
       visible={isShow}
       onCancel={handleCancel}
@@ -53,11 +54,11 @@ function MyTripModal({ data, display, name }) {
         borderTop: "1px solid #ccc",
         overflow: "hidden",
         overflowY: "auto",
-        padding: "14px 0px 0px 0px"
+        padding: "14px 0px 0px 0px",
       }}
     >
       <div className={cx("wrapper")}>
-        <CollectionList/>
+        <CollectionList data={data} />
       </div>
     </Modal>
   );
