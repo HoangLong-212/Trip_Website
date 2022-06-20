@@ -15,7 +15,7 @@ function FilterList({ context, data }) {
   const [state, setState] = useState([]);
   const [current, setCurrent] = useState(1);
   const [numberSlice, setNumberSlice] = useState([0, 2]);
-  
+
   const onChange = (page) => {
     setNumberSlice([
       numberSlice[0] + (page - current) * 2,

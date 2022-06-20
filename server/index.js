@@ -11,15 +11,14 @@ import Attraction from "./routers/Attraction.js";
 import User from "./routers/User.js";
 import Profile from "./routers/Profile.js";
 import MyTrip from "./routers/MyTrip.js";
+import dotenv from "dotenv";
 
-
-
+dotenv.config()
 
 const app = express();
-const PORT = process.env.port || 5000;
+const PORT = process.env.PORT || 5000;
 
-const URI =
-  "mongodb+srv://admin:0nEnYGe9LkPeVJbl@cluster0.prgvr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const URI = process.env.DATABASE_URL
 
 app.use(bodyParser.json({ limit: "30mb" }));
 app.use(bodyParser.urlencoded({ extended: true, limit: "30mb" }));
